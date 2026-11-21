@@ -1,0 +1,19 @@
+{{/*
+[INPUT]: Goldmark 代码、语言、选项与 Chroma 逐行高亮能力。
+[OUTPUT]: 原版 figure.highlight、gutter/code 表格和行标记。
+[POS]: 代码渲染边界；令现有 CSS 与复制脚本直接复用。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{- $lang := .Type | default "text" -}}
+{{- $result := transform.HighlightCodeBlock . (dict "noClasses" false "lineNos" false "style" "monokai") -}}
+{{- $code := $result.Inner -}}
+{{/* Chroma token 映射到上游 highlight.js 类名，沿用原配色。 */}}
+{{- $tokens := dict "k" "keyword" "kc" "literal" "kd" "keyword" "kn" "keyword" "kp" "keyword" "kr" "keyword" "kt" "built_in" "s" "string" "s1" "string" "s2" "string" "sb" "string" "sc" "string" "sd" "string" "se" "string" "sh" "string" "si" "subst" "sr" "regexp" "ss" "symbol" "m" "number" "mb" "number" "mf" "number" "mh" "number" "mi" "number" "mo" "number" "il" "number" "c" "comment" "c1" "comment" "cm" "comment" "cp" "preprocessor" "cs" "comment" "ch" "shebang" "nb" "built_in" "bp" "built_in" "nf" "title" "fm" "title" "nc" "title" "nt" "tag" "na" "attribute" "nd" "title" "no" "constant" "gd" "deletion" "gi" "addition" -}}
+{{- range $from, $to := $tokens -}}{{- $code = replace $code (printf `class="%s"` $from) (printf `class="%s"` $to) -}}{{- end -}}
+{{- $code = replaceRE ` style="[^"]*"` "" $code -}}
+{{- $code = replace $code `class="line hl"` `class="line marked"` -}}
+{{- $lines := split (strings.TrimSuffix "\n" .Inner) "\n" -}}
+<figure class="highlight {{ $lang }}" data-language="{{ $lang }}">
+  <figcaption>{{ with .Attributes.title }}<span>{{ . }}</span>{{ end }}{{ with .Attributes.source }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $.Attributes.source_text | default "Source" }}</a>{{ end }}</figcaption>
+  <table><tbody><tr><td class="gutter{{ if eq .Options.linenos false }} no-line-number{{ end }}"><pre>{{ range $index, $line := $lines }}<span class="line">{{ add $index 1 }}</span>{{ "\n" }}{{ end }}</pre></td><td class="code"><pre>{{ $code | safeHTML }}</pre></td></tr></tbody></table>
+</figure>

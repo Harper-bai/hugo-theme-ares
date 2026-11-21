@@ -1,205 +1,110 @@
+<!--
+[INPUT]: 当前 Hugo 主题实现与示例配置。
+[OUTPUT]: 文章、页面、代码与原生折叠内容的使用说明。
+[POS]: 项目文档；参数与命令必须随实现更新。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+-->
+
 # 使用说明
 
-## 目录 <!-- omit in toc -->
+主题支持 Hugo 0.158.0 及更新版本。示例站位于 `exampleSite/`，完整站点配置必须从该目录复制或按配置说明建立。
 
-- [使用说明](#使用说明)
-  - [元描述](#元描述)
-    - [索引页](#索引页)
-  - [标题](#标题)
-  - [显示帖子预览](#显示帖子预览)
-  - [警告块](#警告块)
-  - [折叠内容](#折叠内容)
-  - [代码块](#代码块)
-  - [网站图标](#网站图标)
-  - [Mermaid](#mermaid)
-  - [无障碍访问（A11y）](#无障碍访问a11y)
-  - [主题切换器](#主题切换器)
-  - [返回顶部按钮](#返回顶部按钮)
+## 文章与摘要
 
-## 元描述
-
-元描述是搜索引擎用于展示网站内容的简短摘要。
-
-页面的元描述优先使用你自己在 Front Matter 中设置的 `description`。如果你没有设置，主题会按照以下优先级自动生成：
-
-1. `page.description`：如果你在 Front Matter 中设置了 `description` 属性
-2. `page.excerpt`：如果 `description` 不存在，主题将使用摘要。关于摘要，详情查看[这里](#显示帖子预览)
-3. 默认值：如果以上两者都不存在，主题将使用页面标题和作者作为默认描述，格式为：`[文章标题] - [作者]`
-
-如果你在文章 Front Matter 中设置了 `description`：
-
-```markdown
----
-title: 测试
-date: 2024-04-01 00:00:00
-description: 巴拉巴拉巴拉
----
-```
-
-最终生成的 HTML 会是：
-
-```html
-<meta name="description" content="巴拉巴拉巴拉">
-```
-
-### 索引页
-
-> 索引页包含文章索引页、标签索引页和分类索引页。
-
-索引页的元描述则更为简单。它会直接使用 Hexo 站点配置文件 `_config.yml` 中的 `description` 属性。如果站点配置中没有设置，主题会使用一个硬编码的默认值 `'A Blog Powered By Hexo'`。
-
-在 `_config.yml` 中：
+文章放在 `content/posts/`。中文、英文、日文的文件后缀分别为 `.zh.md`、`.en.md`、`.ja.md`。同名文件自动构成翻译集合。
 
 ```yaml
-description: “我的个人博客，专注于前端技术分享。”
-```
-
-最终在索引页生成的 HTML 会是：
-
-```html
-<meta name="description" content="我的个人博客，专注于前端技术分享。">
-```
-
-## 标题
-
-Hexo-Theme-Ares 仅支持三种标题：
-
-- `h1` 为大标题
-- `h2` 和 `h3` 为中标题
-- `h4` 到 `h6` 都是小标题
-
-这样做的目的是保持博文结构的简洁性和可读性，而不是嵌套多个层次，分散对内容的注意力。
-
-## 显示帖子预览
-
-如果希望在博客索引中包含一些文章预览文本，可以包含 `<!-- more -->` 语句。
-
-在 `<!-- more -->` 语句之前的所有内容都将被解析并显示在索引中。
-
-```markdown
 ---
-title: 测试
-date: 2024-04-01 00:00:00
-desc: 巴拉巴拉巴拉。
+title: 一篇文章
+date: 2026-11-20T09:00:00+08:00
+description: 搜索引擎使用的描述。
+tags: [Hugo, 生活]
+categories: [技术]
 ---
-
-在博客首页中会在标题下出现的文字。
-
-<!-- more -->
-
-必须进入文章页面内才能看到的内容。
 ```
 
-## 警告块
+正文中的 `<!--more-->` 之前是首页摘要，也支持带空格的 `<!-- more -->` 写法。有分隔符时显示阅读全文链接；没有分隔符时，首页显示完整正文。`draft: true` 的文章不会进入正常构建。
 
-使用类为 `danger` 的 `div` 标签来呈现警告块：
+文章标题优先使用 front matter 的 `title`。描述优先使用 `description`，其次使用正文摘要。首页与列表使用站点的 `params.description`。
 
-```html
-<div class="danger">
+翻译文件可设置相同的 `translationKey`，以关联不同文件名的文章。语言切换优先进入当前页面的译文；缺少译文时进入目标语言首页。
 
-这是一个例子！		
-		
-</div>
+## 归档
+
+创建 `content/archives/_index.zh.md`：
+
+```yaml
+---
+title: 归档
+layout: archives
+---
 ```
 
-## 折叠内容
+归档是分区首页，支持 Hugo 分页。主题按年份倒序排列文章。同样建立 `_index.en.md` 与 `_index.ja.md`，即可提供其他语言的归档。
 
-使用 `details` 和 `summary` 标签来实现折叠内容：
+分类和标签页由 Hugo 自动生成，无需手工创建索引文件。目录显示首字母分组与文章计数，详情按年份列出文章。需要自定义标题时可创建对应 taxonomy 的 `_index.zh.md`。
+
+## 关于与友链
+
+关于页使用 `content/about.zh.md`，写普通 Markdown 即可。
+
+友链页使用 `content/friends.zh.md`：
+
+```yaml
+---
+title: 友情链接
+layout: friends
+---
+```
+
+front matter 之后的内容显示在卡片之前。卡片来自站点配置的 `params.friend_links`，只显示 `lang` 与当前语言一致的条目。
+
+## 代码
+
+使用标准围栏代码块。代码由 Hugo 内建的 Chroma 高亮，主题提供行号、文件名和复制按钮。
+
+````markdown
+```go {title="hello.go" hl_lines=[2]}
+package main
+import "fmt"
+```
+````
+
+可使用 `title` 指定文件名。`hl_lines` 使用 Hugo 标准行号列表。默认显示行号；设置 `linenos=false` 可隐藏行号。使用 `source` 和 `source_text` 可提供代码来源链接。
+
+代码工具栏提供复制、展开和折叠按钮。复制只包含代码，不包含行号。较长的代码显示折叠按钮。
+
+## Markdown 和 HTML
+
+支持表格、引用、列表、图片和原生 HTML。显示 HTML 区块需要在站点配置中设置 `markup.goldmark.renderer.unsafe = true`。
 
 ```html
 <details>
 <summary>点击展开</summary>
 
-这里是被折叠的内容...
-可以包含任何 markdown 内容
-
-- 列表项
-- 代码块
-- 等等
+<p>这里是补充内容。</p>
 
 </details>
+
+<div class="danger"><p>这是一段提醒。</p></div>
 ```
 
-不写 `summary` 的话则显示默认的“Details”。
+折叠区块适合放置补充说明。区块内使用 Markdown 段落时，在 HTML 标签与段落之间留出空行。
 
-## 代码块
+图片可使用 Hugo 页面 bundle 的相对地址，也可引用 `static/` 中的资源。主题会为站点根路径图片补上 `baseURL` 的子目录。
 
-使用代码块的完整语法如下：
+## 数学公式
 
-````markdown
-```[语言] [标题] [链接] [链接文本] [其他选项]
-代码内容
-```
-````
+设置 `params.math = true` 后加载 MathJax。使用 `\( ... \)`、`\[ ... \]` 或 `$$ ... $$`。单篇文章可通过 `math: false` 关闭。
 
-其中：
+MathJax 从 jsDelivr 加载。示例站默认关闭数学公式，基础页面完全使用本地资源。主题不内置 Mermaid；需要流程图时，可自行添加 Hugo shortcode 或使用图片。
 
-- 语言: 指定代码语言
-- 标题: 代码块的标题
-- 链接: 代码的来源链接
-- 链接文本: 链接的显示文本
-- 其他选项: 其他选项，参考 [Hexo 文档](https://hexo.io/zh-cn/docs/tag-plugins#%E4%BB%A3%E7%A0%81%E5%9D%97)
-- 代码内容: 代码内容
+## 其他文章参数
 
-## 网站图标
+- `from`：显示翻译原文链接。
+- `entry: true`：为文章增加 h-entry 微格式。
+- `in_reply_to`：显示回复目标地址。
+- `comments: false`：关闭当前文章评论。
+- `search: false`：不将当前页面放入搜索索引。
 
-在 `themes/source` 目录中找到 `favicon.png`，将你想要使用的图片重命名为 `favicon.png` 并顶替掉原有的图片。图片必须是 `256 * 256` 的。
-
-## Mermaid
-
-目前 Hexo-Theme-Ares 想要启动 Mermaid 功能，依然需要用到 [Hexo-Mermaid-Diagrams](https://github.com/mslxl/hexo-mermaid-diagrams) 依赖。步骤也较为繁琐：
-
-1. 首先需要在根目录下创建 `libs` 目录，并在内安装 Hexo-Mermaid-Diagrams。
-
-    > 你可以选择直接使用 NPM 安装。
-    >
-    > 但是，由于 Hexo-Mermaid-Diagrams 使用的是旧版本的 Mermaid（9.1.7），如果想要使用新版本的 Mermaid，就需要对其文件进行修改。而 `node_modules` 目录默认不会被 Git 追踪，因此不推荐使用 NPM 安装。
-
-2. 将 `libs/hexo-mermaid-diagrams/index.html` 修改为：
-
-    ```html
-    <!doctype html>
-    <html>
-      <head>
-        <link rel="stylesheet" href="./fontawesome-free/css/all.min.css">
-      </head>
-      <body>
-        <div id="container"></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js" integrity="sha512-6a80OTZVmEJhqYJUmYd5z8yHUCDlYnj6q9XwB/gKOEyNQV/Q8u+XeSG59a2ZKFEHGTYzgfOQKYEBtrZV7vBr+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      </body>
-    </html>
-    ```
-
-    > 如果你有发现更新的 `mermaid.min.js`，可以自行将上面的 `<script>` 标签进行替换。
-
-3. 接着删除 `libs/hexo-mermaid-diagrams/mermaid.min.js`。
-
-使用方式非常简单：
-
-```markdown
-{% mermaid %}
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-{% endmermaid %}
-```
-
-语法请自行查阅 [Mermaid 官网](https://mermaid.js.org/intro/)。
-
-## 无障碍访问（A11y）
-
-主题已内置无障碍访问支持，包括键盘导航、屏幕阅读器优化、焦点指示器等功能。这些功能默认启用，无需配置。
-
-## 主题切换器
-
-主题支持明暗模式切换，会根据系统设置自动选择主题，用户也可以手动切换。用户的选择会保存到本地存储中。
-
-主题切换器默认显示在导航栏中。
-
-## 返回顶部按钮
-
-返回顶部按钮会在用户向下滚动时自动显示在页面右下角，点击后平滑滚动到页面顶部。
-
-该功能默认启用。
+明暗主题会跟随系统设置。手动选择保存在浏览器本地。返回顶部按钮在向下滚动后显示。移动菜单与正文折叠区块使用原生 HTML 控件。

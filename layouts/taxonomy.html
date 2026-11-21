@@ -1,0 +1,28 @@
+{{/*
+[INPUT]: 当前语言的分类或标签集合。
+[OUTPUT]: 依首字母分组的分类与标签目录。
+[POS]: taxonomy 索引；复用原版 archive 与计数样式。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ define "main" }}
+{{ $kind := cond (eq .Data.Singular "tag") "tag" "category" }}
+{{ $titleKey := cond (eq $kind "tag") "tags_title" "categories_title" }}
+<div class="archive">
+  <h2>{{ if .File }}{{ .Title }}{{ else }}{{ i18n $titleKey }}{{ end }}</h2>
+  {{ $groups := dict }}
+  {{ $pinyin := dict "一" "A" "二" "E" "三" "S" "四" "S" "五" "W" "六" "L" "七" "Q" "八" "B" "九" "J" "十" "S" }}
+  {{ range .Data.Terms.Alphabetical }}
+    {{ $first := upper (substr .Page.LinkTitle 0 1) }}
+    {{ $letter := "#" }}
+    {{ if findRE `^[A-Z]$` $first }}{{ $letter = $first }}{{ else }}{{ with index $pinyin $first }}{{ $letter = . }}{{ end }}{{ end }}
+    {{ $items := index $groups $letter | default slice }}
+    {{ $groups = merge $groups (dict $letter ($items | append .)) }}
+  {{ end }}
+  {{ range $letter, $terms := $groups }}
+  <h2 class="archive-year">{{ $letter }}</h2>
+  {{ range $terms }}
+  <div class="post-item"><div class="post-info"><span class="{{ $kind }}-count">({{ .Count }})</span></div><a class="post-title-link" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a></div>
+  {{ end }}
+  {{ end }}
+</div>
+{{ end }}

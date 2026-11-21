@@ -1,0 +1,7 @@
+{{/*
+[INPUT]: 站点语言与首页地址。
+[OUTPUT]: 使用既有文章样式的未找到页面。
+[POS]: Hugo 的 404 入口。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ define "main" }}<div class="post"><article class="post-block"><h1 class="post-title">404</h1><div class="post-content"><p>{{ i18n "not_found" }}</p><p><a href="{{ .Site.Home.RelPermalink }}">{{ i18n "menu_home" }}</a></p></div></article></div>{{ end }}

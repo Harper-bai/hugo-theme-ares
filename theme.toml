@@ -1,0 +1,21 @@
+# [INPUT]: Hugo 读取主题的名称、许可与版本约束。
+# [OUTPUT]: 声明主题元数据和上游来源。
+# [POS]: Hugo 主题入口；运行配置位于 hugo.toml。
+# [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+name = "Ares"
+license = "MIT"
+licenselink = "https://github.com/Harper-bai/hugo-theme-ares/blob/master/LICENSE"
+description = "A faithful Hugo port of Hexo Theme Ares, with local fonts, dark mode and multilingual search."
+homepage = "https://github.com/Harper-bai/hugo-theme-ares"
+tags = ["blog", "minimal", "responsive", "dark", "multilingual"]
+features = ["search", "archive", "syntax highlighting", "rss", "i18n"]
+min_version = "0.158.0"
+
+[author]
+  name = "Harper-bai"
+  homepage = "https://github.com/Harper-bai"
+
+[original]
+  author = "Cytrogen"
+  homepage = "https://github.com/cytrogen/hexo-theme-ares"
+  repo = "https://github.com/cytrogen/hexo-theme-ares"

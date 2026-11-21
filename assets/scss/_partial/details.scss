@@ -1,0 +1,55 @@
+/**
+ * [INPUT]: 依赖 ../variables 的 Sass 定义。
+ * [OUTPUT]: 定义折叠区块与正文展开后的标题间距。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+@use "../variables" as *;
+
+details {
+    margin: 1em 0;
+    padding: 1em;
+    background: var(--surface-elevated);
+    border-radius: $border-radius;
+    border: 1px solid var(--border-primary);
+
+    summary {
+      cursor: pointer;
+      padding: 0.5em;
+      margin: -0.5em;
+      border-radius: $border-radius;
+
+      &:hover {
+        background: var(--surface-interactive);
+      }
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+
+    &[open] {
+      summary::before {
+        transform: rotate(90deg);
+      }
+
+      > *:not(summary) {
+        animation: details-show 0.2s ease-in-out;
+      }
+    }
+  }
+
+  .post-content details[open] > summary {
+    margin-bottom: 0.75em;
+  }
+
+  @keyframes details-show {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

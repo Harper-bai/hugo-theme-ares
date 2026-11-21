@@ -1,0 +1,32 @@
+{{/*
+[INPUT]: posts 局部模板返回当前语言的文章集合。
+[OUTPUT]: 原版首页的文章预览与分页。
+[POS]: 主页入口；兼容 Hugo 与原 Hexo 的摘要分隔符。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ define "main" }}
+{{ $pager := .Paginate (partial "posts.html" .) }}
+<ul class="home post-list">
+  {{ range $pager.Pages }}
+  <li class="post-list-item"><article class="post-block">
+    <h2 class="post-title"><a class="post-title-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ partial "post-info.html" (dict "page" . "source" true) }}
+    {{ $hasMore := gt (len (findRE `<!--\s*more\s*-->` .RawContent)) 0 }}
+    <div class="post-content">
+      {{ if $hasMore }}
+        {{ if findRE `<!--more-->` .RawContent }}
+          {{ .Summary }}
+        {{ else }}
+          {{ $intro := replaceRE `(?s)<!--\s*more\s*-->.*$` "" .RawContent }}
+          {{ .RenderString (dict "display" "block") $intro }}
+        {{ end }}
+      {{ else }}
+        {{ .Content }}
+      {{ end }}
+    </div>
+    {{ if $hasMore }}<a class="read-more" href="{{ .RelPermalink }}">{{ i18n "more" }}</a>{{ end }}
+  </article></li>
+  {{ end }}
+</ul>
+{{ end }}
+{{ define "pagination" }}{{ partial "pagination.html" .Paginator }}{{ end }}

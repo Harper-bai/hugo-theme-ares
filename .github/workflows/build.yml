@@ -1,0 +1,31 @@
+# [INPUT]: 推送或拉取请求中的主题、示例站与验证脚本。
+# [OUTPUT]: Hugo 两个版本的页面完整性和脚本语法检查。
+# [POS]: 仓库持续集成入口；不发布站点。
+# [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+name: Hugo theme checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hugo: ['0.158.0', '0.167.0']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ matrix.hugo }}
+      - run: python3 scripts/verify.py
+      - name: Check browser scripts
+        run: |
+          for file in static/js/*.js; do
+            node --check "$file"
+          done

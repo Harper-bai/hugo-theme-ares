@@ -1,0 +1,22 @@
+{{/*
+[INPUT]: 文章正文、作者与可选 entry/in_reply_to 参数。
+[OUTPUT]: 保留 Ares 文章布局与 h-entry 语义的正文。
+[POS]: 普通单页的唯一渲染器；不生成列表或分页。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+<div class="post">
+  <article class="post-block{{ if .Params.entry }} h-entry{{ end }}">
+    {{ if .Params.entry }}
+    <div class="post-meta p-author h-card" style="display: none;">
+      <img class="author-avatar u-photo" src="{{ .Site.Params.logo | default "favicon.png" | relURL }}" alt="{{ .Site.Params.author }}">
+      <a class="author-name p-name u-url" href="{{ .Site.Home.Permalink }}">{{ .Site.Params.author }}</a>
+    </div>
+    <a class="post-permalink u-url" href="{{ .Permalink }}" style="display: none;">{{ i18n "permalink" }}</a>
+    <div class="p-summary" style="display: none;">{{ .Summary }}</div>
+    {{ end }}
+    <h1 class="post-title{{ if .Params.entry }} p-name{{ end }}">{{ .Title }}</h1>
+    {{ partial "post-info.html" (dict "page" . "source" true) }}
+    {{ with .Params.in_reply_to }}<div class="post-reply">{{ i18n "reply_to" }}: <a class="u-in-reply-to" href="{{ . }}">{{ . }}</a></div>{{ end }}
+    <div class="post-content{{ if .Params.entry }} e-content{{ end }}">{{ .Content }}</div>
+  </article>
+</div>

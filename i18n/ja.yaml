@@ -1,0 +1,106 @@
+# [INPUT]: 模板与脚本使用固定翻译键。
+# [OUTPUT]: 提供ja界面文案。
+# [POS]: 主题语言目录；与其他语言保持相同键。
+# [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+menu_home:
+  other: ホーム
+menu_archive:
+  other: アーカイブ
+menu_tags:
+  other: タグ
+menu_categories:
+  other: 分類
+menu_friends:
+  other: リンク集
+menu_about:
+  other: について
+menu_github:
+  other: GitHub
+menu_rss:
+  other: RSS
+menu_portfolio:
+  other: 作品集
+nav_search:
+  other: 検索
+nav_search_placeholder:
+  other: 検索...
+nav_current_language:
+  other: 日本語
+nav_languages_en:
+  other: English
+nav_languages_zh:
+  other: 中文
+nav_languages_jp:
+  other: 日本語
+nav_more:
+  other: 更多
+nav_close:
+  other: 閉じる
+search_close:
+  other: 閉じる
+search_description:
+  other: キーワードを入力して記事を検索
+search_results:
+  other: 検索結果
+search_no_results:
+  other: 検索結果が見つかりません
+search_loading:
+  other: 読み込み中...
+code_expand:
+  other: 展開する
+code_fold:
+  other: 折りたたむ
+code_copy:
+  other: コピー
+code_copied:
+  other: コピー済み
+code_copy_failed:
+  other: コピーに失敗しました
+friendlinks:
+  other: リンク集
+archive_title:
+  other: アーカイブ
+tags_title:
+  other: タグ
+categories_title:
+  other: 分類
+prev:
+  other: 前へ
+next:
+  other: 次へ
+prev_post:
+  other: 前の投稿
+next_post:
+  other: 次の投稿
+more:
+  other: '...もっと読む'
+translated:
+  other: 翻訳 · 原文リンク
+reply_to:
+  other: 返信
+skip_content:
+  other: 本文へスキップ
+back_to_top:
+  other: トップへ戻る
+theme_toggle:
+  other: テーマを切り替え
+nav_menu:
+  other: メニュー
+not_found:
+  other: ページが見つかりません。
+permalink:
+  other: パーマリンク
+date_format:
+  other: 2006/01/02
+webmention_empty:
+  other: Webmentions はありません
+load_failed:
+  other: 読み込みに失敗しました
+view_original:
+  other: 元の投稿を見る
+anonymous:
+  other: 匿名
+tag_page_description:
+  other: Articles tagged %s
+category_page_description:
+  other: Articles in %s

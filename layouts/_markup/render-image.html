@@ -1,0 +1,10 @@
+{{/*
+[INPUT]: Markdown 图片地址与当前页面的 bundle 资源。
+[OUTPUT]: 保留原版图片结构并修正子目录部署地址。
+[POS]: 图片渲染钩子；本地 bundle 优先，外部图片保持原地址。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{- $url := .Destination -}}
+{{- with .Page.Resources.Get .Destination -}}{{- $url = .RelPermalink -}}
+{{- else -}}{{- if hasPrefix $url "/" -}}{{- $url = $url | relURL -}}{{- end -}}{{- end -}}
+<img src="{{ $url }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}>

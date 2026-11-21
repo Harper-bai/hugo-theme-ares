@@ -1,0 +1,23 @@
+{{/*
+[INPUT]: 当前页面内容、layout 参数与正文局部模板。
+[OUTPUT]: 文章、独立页、归档或友链页面。
+[POS]: 单页入口；兼容 Hexo 的 archive/friendlinks 布局名。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ define "main" }}
+  {{ if in (slice "archives" "archive") .Layout }}
+    <div class="archive">{{ partial "post-list.html" (partial "posts.html" .) }}</div>
+  {{ else if in (slice "friends" "friendlinks") .Layout }}
+    {{ partial "friends.html" . }}
+  {{ else }}
+    {{ partial "post.html" . }}
+  {{ end }}
+{{ end }}
+{{ define "pagination" }}
+  {{ if in (.Site.Params.mainSections | default (slice "posts")) .Section }}
+    {{ partial "post-pagination.html" . }}
+    {{ partial "comments.html" . }}
+  {{ else }}
+    <div class="paginator"></div>
+  {{ end }}
+{{ end }}

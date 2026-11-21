@@ -1,36 +1,21 @@
 {
-  "name": "hexo-theme-ares",
+  "name": "hugo-theme-ares",
   "version": "1.0.0",
-  "description": "A hexo theme based on hexo-theme-hermes and hexo-theme-apollo",
-  "main": "index.js",
+  "private": true,
+  "description": "A faithful Hugo port of Hexo Theme Ares. Node is only needed for optional Sass development.",
   "scripts": {
-    "sass": "gulp sass",
-    "watch": "gulp watch",
-    "build": "gulp build",
-    "dev": "gulp"
+    "dev": "hugo server --source exampleSite",
+    "build": "hugo --source exampleSite --minify",
+    "check": "python3 scripts/verify.py",
+    "css": "sass --no-source-map assets/scss/ares.scss static/css/ares.css"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cytrogen/hexo-theme-ares"
+    "url": "https://github.com/Harper-bai/hugo-theme-ares"
   },
-  "keywords": [
-    "hexo",
-    "theme",
-    "ares"
-  ],
-  "author": "Cytrogen",
+  "author": "Harper-bai; original design by Cytrogen",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cytrogen/hexo-theme-ares/issues"
-  },
-  "homepage": "https://github.com/cytrogen/hexo-theme-ares#readme",
   "devDependencies": {
-    "@types/sass": "^1.45.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "sass": "^1.83.0"
+    "sass": "1.83.0"
   }
 }

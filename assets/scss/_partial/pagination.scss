@@ -1,0 +1,28 @@
+/**
+ * [INPUT]: 依赖 ../variables 的 Sass 定义。
+ * [OUTPUT]: 定义列表和文章分页按钮。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+@use "../variables" as *;
+
+.paginator {
+    margin: 4em 0;
+    text-align: center;
+
+    .prev,
+    .next {
+      display: inline-block;
+      margin: 0 4px;
+      padding: 4px 12px;
+      border-radius: $border-radius;
+      border-bottom: 4px solid #3aa373;
+      font-size: 14px;
+      color: white;
+      background-color: #4fc08d;
+
+      &:hover {
+        background-color: #22bd77;
+      }
+    }
+  }

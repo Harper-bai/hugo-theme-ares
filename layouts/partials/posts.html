@@ -1,0 +1,8 @@
+{{/*
+[INPUT]: Page.Site.RegularPages 与 params.mainSections。
+[OUTPUT]: 当前语言中按日期倒序排列的文章集合。
+[POS]: 首页、归档、搜索、订阅与相邻文章的共同数据边界。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ $sections := .Site.Params.mainSections | default (slice "posts") }}
+{{ return (where .Site.RegularPages "Section" "in" $sections).ByDate.Reverse }}

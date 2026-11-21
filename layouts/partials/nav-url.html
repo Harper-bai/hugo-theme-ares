@@ -1,0 +1,18 @@
+{{/*
+[INPUT]: 字典 page 与 item；item 提供 type/path/key。
+[OUTPUT]: 当前语言且包含 baseURL 子路径的导航地址。
+[POS]: 导航地址唯一解析入口；真实页面优先于路径拼接。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ $url := .item.path | default "/" }}
+{{ if ne .item.type "external" }}
+  {{ $path := strings.TrimPrefix "/" $url }}
+  {{ $url = printf "%s%s" .page.Site.Home.RelPermalink $path }}
+  {{ if eq $path "" }}{{ $url = .page.Site.Home.RelPermalink }}
+  {{ else if eq .item.key "rss" }}
+    {{ with .page.Site.Home.OutputFormats.Get "RSS" }}{{ $url = .RelPermalink }}{{ end }}
+  {{ else }}
+    {{ with .page.Site.GetPage $path }}{{ $url = .RelPermalink }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ return $url }}

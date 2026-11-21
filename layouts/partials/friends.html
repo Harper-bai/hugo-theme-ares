@@ -1,0 +1,18 @@
+{{/*
+[INPUT]: 页面正文与 params.friend_links 的当前语言条目。
+[OUTPUT]: 原版友链卡片网格与说明文字。
+[POS]: friends/friendlinks 布局的展示边界。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+<div class="archive"><section class="friend-links">
+  <h2 class="friend-links__title">{{ i18n "friendlinks" }}</h2>
+  {{ with .Content }}<div class="friend-links__content">{{ . }}</div>{{ end }}
+  {{ $lang := .Language.Lang }}
+  {{ $links := where (.Site.Params.friend_links | default slice) "lang" $lang }}
+  {{ with $links }}<div class="friend-links__grid">
+    {{ range . }}{{ $name := .name }}<div class="friend-link-card"><a class="friend-link-card__link" href="{{ .url }}" target="_blank" rel="noopener noreferrer"><div class="friend-link-card__content">
+      <h3 class="friend-link-card__name">{{ .name }}</h3><p class="friend-link-card__description">{{ .description }}</p>
+      {{ with .avatar }}<img class="friend-link-card__avatar" src="{{ . | relURL }}" alt="{{ $name }}">{{ end }}
+    </div></a></div>{{ end }}
+  </div>{{ end }}
+</section></div>

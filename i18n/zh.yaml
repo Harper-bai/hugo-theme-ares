@@ -1,0 +1,106 @@
+# [INPUT]: 模板与脚本使用固定翻译键。
+# [OUTPUT]: 提供zh界面文案。
+# [POS]: 主题语言目录；与其他语言保持相同键。
+# [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+menu_home:
+  other: 首页
+menu_archive:
+  other: 归档
+menu_tags:
+  other: 标签
+menu_categories:
+  other: 分类
+menu_friends:
+  other: 友链
+menu_about:
+  other: 关于
+menu_github:
+  other: GitHub
+menu_rss:
+  other: RSS订阅
+menu_portfolio:
+  other: 作品集
+nav_search:
+  other: 搜索
+nav_search_placeholder:
+  other: 搜索...
+nav_current_language:
+  other: 中文
+nav_languages_en:
+  other: English
+nav_languages_zh:
+  other: 中文
+nav_languages_jp:
+  other: 日本語
+nav_more:
+  other: 更多
+nav_close:
+  other: 关闭
+search_close:
+  other: 关闭
+search_description:
+  other: 输入关键词搜索文章
+search_results:
+  other: 搜索结果
+search_no_results:
+  other: 没有找到结果
+search_loading:
+  other: 加载中...
+code_expand:
+  other: 展开
+code_fold:
+  other: 折叠
+code_copy:
+  other: 复制
+code_copied:
+  other: 已复制
+code_copy_failed:
+  other: 复制失败
+friendlinks:
+  other: 友情链接
+archive_title:
+  other: 归档
+tags_title:
+  other: 标签
+tag_page_description:
+  other: 关于“%s”标签下的所有文章
+categories_title:
+  other: 分类
+category_page_description:
+  other: 关于“%s”分类下的所有文章
+prev:
+  other: 上一页
+next:
+  other: 下一页
+prev_post:
+  other: 上一篇
+next_post:
+  other: 下一篇
+more:
+  other: '...阅读全文'
+translated:
+  other: 翻译 · 原文地址
+reply_to:
+  other: 回复
+skip_content:
+  other: 跳到主要内容
+back_to_top:
+  other: 返回顶部
+theme_toggle:
+  other: 切换主题
+nav_menu:
+  other: 菜单
+not_found:
+  other: 没有找到这个页面。
+permalink:
+  other: 永久链接
+date_format:
+  other: 2006/01/02
+webmention_empty:
+  other: 暂无 Webmentions
+load_failed:
+  other: 加载失败，请稍后重试
+view_original:
+  other: 查看原文
+anonymous:
+  other: 匿名

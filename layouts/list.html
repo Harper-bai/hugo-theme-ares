@@ -1,0 +1,13 @@
+{{/*
+[INPUT]: 当前分区页面集合与 post-list 局部模板。
+[OUTPUT]: 按年份排列的分区文章与分页。
+[POS]: 分区列表；与归档共享文章行的 DOM。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ define "main" }}
+{{ $pages := .RegularPages.ByDate.Reverse }}
+{{ if in (slice "archives" "archive") .Layout }}{{ $pages = partial "posts.html" . }}{{ end }}
+{{ $pager := .Paginate $pages }}
+<div class="archive">{{ partial "post-list.html" $pager.Pages }}</div>
+{{ end }}
+{{ define "pagination" }}{{ partial "pagination.html" .Paginator }}{{ end }}

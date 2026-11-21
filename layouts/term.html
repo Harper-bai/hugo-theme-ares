@@ -1,0 +1,14 @@
+{{/*
+[INPUT]: 当前语言中属于这个标签或分类的文章。
+[OUTPUT]: 标签或分类标题、文章年份分组与分页。
+[POS]: term 详情；不读取其他语言的文章。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ define "main" }}
+{{ $pager := .Paginate .RegularPages.ByDate.Reverse }}
+<div class="{{ cond (eq .Data.Singular "tag") "tag" "category" }}">
+  <h2>{{ .Title }}</h2>
+  {{ partial "post-list.html" $pager.Pages }}
+</div>
+{{ end }}
+{{ define "pagination" }}{{ partial "pagination.html" .Paginator }}{{ end }}

@@ -1,0 +1,21 @@
+{{/*
+[INPUT]: 当前页面的翻译集合与 Hugo 多语言站点集合。
+[OUTPUT]: 原版语言菜单；没有译文时指向该语言首页。
+[POS]: 导航语言入口；不构造不存在的文章地址。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ if hugo.IsMultilingual }}
+<div class="language-menu">
+  <button class="language-toggle" type="button" aria-label="{{ i18n "nav_current_language" }}">{{ partial "icons.html" "globe" }}<span>{{ i18n "nav_current_language" }}</span></button>
+  <div class="language-dropdown">
+    {{ range hugo.Sites }}
+      {{ if ne .Language.Lang $.Language.Lang }}
+        {{ $lang := .Language.Lang }}
+        {{ $target := .Home }}
+        {{ range $.Translations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
+        <a class="language-option" href="{{ $target.RelPermalink }}" lang="{{ .Language.Locale | default $lang }}" hreflang="{{ .Language.Locale | default $lang }}">{{ .Language.Label | default $lang }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,88 @@
+# [INPUT]: Hugo 站点配置覆盖这些主题默认值。
+# [OUTPUT]: 提供页面输出、Markdown 选项与主题参数。
+# [POS]: 主题默认配置；示例站只覆盖站点身份与语言。
+# [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+
+ignoreFiles = ['(^|/)AGENTS\.md$']
+
+[[module.mounts]]
+  source = "layouts"
+  target = "layouts"
+  files = ["! AGENTS.md", "! **/AGENTS.md"]
+[[module.mounts]]
+  source = "i18n"
+  target = "i18n"
+  files = ["! AGENTS.md", "! **/AGENTS.md"]
+[[module.mounts]]
+  source = "static"
+  target = "static"
+  files = ["! AGENTS.md", "! **/AGENTS.md"]
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[outputFormats.RSS]
+  baseName = "atom"
+
+[outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "search"
+  isPlainText = true
+  notAlternative = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [["\\[", "\\]"], ["$$", "$$"]]
+    inline = [["\\(", "\\)"]]
+
+[markup.highlight]
+  noClasses = false
+  guessSyntax = false
+
+[params]
+  mainSections = ["posts"]
+  description = "A blog powered by Hugo"
+  author = "Ares"
+  date_format = "01/02/2006"
+  favicon = "favicon.png"
+  logo = "favicon.png"
+  startyear = 2025
+  enable_image_credit = false
+  math = true
+
+  [params.search]
+    enable = false
+    field = "post"
+    content = true
+    limit = 50
+
+  [params.webmention]
+    enable = false
+
+  [params.nav.primary]
+    links = [{type = "internal", key = "home", path = "/"}]
+    buttons = [{type = "component", key = "language", component = "language-switcher"}]
+
+  [params.nav.secondary]
+    links = [
+      {type = "internal", key = "archive", path = "/archives/"},
+      {type = "internal", key = "categories", path = "/categories/"},
+      {type = "internal", key = "tags", path = "/tags/"},
+      {type = "internal", key = "about", path = "/about/"},
+      {type = "internal", key = "friends", path = "/friends/"},
+      {type = "internal", key = "rss", path = "/atom.xml"}
+    ]

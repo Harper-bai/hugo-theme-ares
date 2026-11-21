@@ -1,0 +1,31 @@
+{{/*
+[INPUT]: 可选 Disqus 标识与 Webmention 启用参数。
+[OUTPUT]: 评论容器及第三方评论的页面标识。
+[POS]: 文章页脚插槽；Webmention 在浏览器读取公开 API。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ if ne .Params.comments false }}
+{{ with .Site.Params.disqus }}
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = {{ $.Permalink }};
+    this.page.identifier = {{ $.RelPermalink }};
+    this.page.title = {{ $.Title }};
+  };
+  (function () {
+    var script = document.createElement('script');
+    script.src = 'https://' + {{ . }} + '.disqus.com/embed.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  })();
+</script>
+{{ end }}
+{{ if .Site.Params.webmention.enable }}
+<section class="webmention-section" data-full-url="{{ .Permalink }}" data-empty="{{ i18n "webmention_empty" }}" data-error="{{ i18n "load_failed" }}" data-source="{{ i18n "view_original" }}" data-anonymous="{{ i18n "anonymous" }}" aria-label="Webmentions">
+  <h3 class="webmention-title">Webmentions (<span class="webmention-count">0</span>)</h3>
+  <div class="webmention-list"></div>
+  <span class="webmention-status" role="status">{{ i18n "search_loading" }}</span>
+</section>
+{{ end }}
+{{ end }}

@@ -1,0 +1,27 @@
+/**
+ * [INPUT]: 依赖 ../variables 的 Sass 定义。
+ * [OUTPUT]: 定义页脚与署名。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+@use "../variables" as *;
+
+footer {
+    padding-bottom: 1px;
+
+    .copyright {
+      margin: 4em 0;
+      border-top: 1px solid $border-color;
+      text-align: center;
+
+      p, a {
+        color: #aaa;
+        font-size: 14px;
+        font-weight: 100;
+      }
+
+      a:hover {
+        color: #888;
+      }
+    }
+  }

@@ -1,0 +1,7 @@
+{{/*
+[INPUT]: Goldmark 标题级别、锚点与已渲染文本。
+[OUTPUT]: 原版标题锚点结构与可访问名称。
+[POS]: Markdown 渲染钩子；保持标题前井号的原版样式。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}"><a href="#{{ .Anchor | safeURL }}" class="headerlink" title="{{ .PlainText }}" aria-label="{{ .PlainText }}"></a>{{ .Text | safeHTML }}</h{{ .Level }}>

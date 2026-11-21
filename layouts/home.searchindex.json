@@ -1,0 +1,18 @@
+{{/*
+[INPUT]: 当前语言文章集合及 search.field/content 参数。
+[OUTPUT]: JSON 搜索索引；每项包含标题、纯文本正文和站内链接。
+[POS]: 首页 SearchIndex 输出；默认只索引 posts。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{- $pages := partial "posts.html" . -}}
+{{- if eq .Site.Params.search.field "all" -}}{{- $pages = .Site.RegularPages -}}{{- end -}}
+{{- if eq .Site.Params.search.field "page" -}}{{- $pages = where .Site.RegularPages "Section" "not in" (.Site.Params.mainSections | default (slice "posts")) -}}{{- end -}}
+{{- $entries := slice -}}
+{{- range $pages -}}
+  {{- if ne .Params.search false -}}
+    {{- $content := "" -}}
+    {{- if ne $.Site.Params.search.content false -}}{{- $content = .Plain | htmlUnescape -}}{{- end -}}
+    {{- $entries = $entries | append (dict "title" .Title "content" $content "url" .RelPermalink) -}}
+  {{- end -}}
+{{- end -}}
+{{- $entries | jsonify | safeJS -}}

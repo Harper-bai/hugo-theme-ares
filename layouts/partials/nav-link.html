@@ -1,0 +1,10 @@
+{{/*
+[INPUT]: 字典 page、item、class；使用 nav-url 解析地址。
+[OUTPUT]: 具有原版 class 的内部或外部导航链接。
+[POS]: 桌面与移动导航共享链接语义。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ $url := partial "nav-url.html" . }}
+{{ $label := .item.name | default (i18n (printf "menu_%s" .item.key)) | default .item.key }}
+{{ $active := eq (strings.TrimSuffix "/" .page.RelPermalink) (strings.TrimSuffix "/" $url) }}
+<a class="{{ .class }}{{ if $active }} active{{ end }}" href="{{ $url }}"{{ if eq .item.type "external" }} target="_blank" rel="noopener noreferrer{{ if findRE `^https://(www\.)?(github\.com|gitlab\.com|x\.com|twitter\.com|mastodon\.social)/` $url }} me{{ end }}"{{ end }}{{ if $active }} aria-current="page"{{ end }}>{{ $label }}{{ if eq .item.type "external" }}{{ partial "icons.html" "external-link" }}{{ end }}</a>

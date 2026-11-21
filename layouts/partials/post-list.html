@@ -1,0 +1,12 @@
+{{/*
+[INPUT]: 已筛选并排序的 Pages 集合。
+[OUTPUT]: 按年份分组的日期与标题行。
+[POS]: 归档、分区与 taxonomy 详情共用的展示层。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ range .GroupByDate "2006" }}
+  <h2 class="archive-year">{{ .Key }}</h2>
+  {{ range .Pages }}
+  <div class="post-item">{{ partial "post-info.html" (dict "page" . "source" false) }}<a class="post-title-link" href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+  {{ end }}
+{{ end }}

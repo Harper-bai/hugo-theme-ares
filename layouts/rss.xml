@@ -1,0 +1,21 @@
+{{/*
+[INPUT]: 当前语言的文章集合或当前列表的文章。
+[OUTPUT]: RSS 2.0 订阅；沿用原版 atom.xml 地址。
+[POS]: 所有 RSS 输出的共同入口；不包含独立页面。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{- $pages := partial "posts.html" . -}}
+{{- if not .IsHome -}}{{- $pages = .RegularPages.ByDate.Reverse -}}{{- end -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Site.Title }}</title><link>{{ .Permalink }}</link>
+    <description>{{ .Site.Params.description }}</description>
+    <language>{{ .Site.Language.Locale | default .Site.Language.Lang }}</language>
+    <generator>Hugo</generator>
+    {{ with .OutputFormats.Get "RSS" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml"/>{{ end }}
+    {{ range $pages }}
+    <item><title>{{ .Title }}</title><link>{{ .Permalink }}</link><guid>{{ .Permalink }}</guid><pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate><description>{{ .Content | html }}</description></item>
+    {{ end }}
+  </channel>
+</rss>

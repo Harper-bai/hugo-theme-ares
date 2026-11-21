@@ -1,0 +1,25 @@
+{{/*
+[INPUT]: 搜索开关与当前语言首页的 SearchIndex 输出地址。
+[OUTPUT]: 原版搜索弹窗与脚本所需的索引配置。
+[POS]: 全站搜索插槽；索引由 Hugo 构建，不依赖插件。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ if .Site.Params.search.enable }}
+{{ $index := .Site.Home.OutputFormats.Get "SearchIndex" }}
+{{ if not $index }}{{ errorf "Ares search requires outputs.home = ['HTML', 'RSS', 'SearchIndex']" }}{{ end }}
+<dialog id="search-dialog" class="search-dialog" aria-labelledby="search-title" aria-describedby="search-description" data-index="{{ $index.RelPermalink }}" data-limit="{{ .Site.Params.search.limit | default 50 }}" data-error="{{ i18n "load_failed" }}">
+  <div class="search-dialog__header">
+    <h2 id="search-title" class="search-dialog__title">{{ i18n "nav_search" }}</h2>
+    <button class="search-dialog__close" type="button" aria-label="{{ i18n "search_close" }}" title="{{ i18n "search_close" }}">{{ partial "icons.html" "close" }}</button>
+  </div>
+  <div class="search-dialog__body">
+    <p id="search-description" class="search-dialog__description">{{ i18n "search_description" }}</p>
+    <div class="search-dialog__input-wrapper"><input id="search-input" class="search-dialog__input" type="search" placeholder="{{ i18n "nav_search_placeholder" }}" aria-label="{{ i18n "nav_search_placeholder" }}" autocomplete="off" spellcheck="false"></div>
+    <div class="search-dialog__results"><div id="search-results" class="search-results" aria-live="polite" aria-label="{{ i18n "search_results" }}">
+      <div class="search-results__empty" hidden>{{ i18n "search_no_results" }}</div>
+      <div class="search-results__loading" hidden>{{ i18n "search_loading" }}</div>
+      <div class="search-results__list"></div>
+    </div></div>
+  </div>
+</dialog>
+{{ end }}

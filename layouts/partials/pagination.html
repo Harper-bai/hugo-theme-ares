@@ -1,0 +1,10 @@
+{{/*
+[INPUT]: Hugo Pager；调用方先确定过滤与排序。
+[OUTPUT]: 原版上一页与下一页链接。
+[POS]: 只承担列表分页，不选择文章集合。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+<div class="paginator">
+  {{ with .Prev }}<a class="prev" href="{{ .URL }}">{{ i18n "prev" }}</a>{{ end }}
+  {{ with .Next }}<a class="next" href="{{ .URL }}">{{ i18n "next" }}</a>{{ end }}
+</div>

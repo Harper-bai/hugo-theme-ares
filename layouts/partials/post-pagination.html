@@ -1,0 +1,11 @@
+{{/*
+[INPUT]: 当前文章与同语言文章集合。
+[OUTPUT]: 按发布日期定位的上一篇与下一篇链接。
+[POS]: 文章页脚；独立页面不进入文章序列。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ $posts := partial "posts.html" . }}
+<div class="paginator">
+  {{ with $posts.Next . }}<a class="prev" href="{{ .RelPermalink }}">{{ i18n "prev_post" }}</a>{{ end }}
+  {{ with $posts.Prev . }}<a class="next" href="{{ .RelPermalink }}">{{ i18n "next_post" }}</a>{{ end }}
+</div>

@@ -1,0 +1,106 @@
+# [INPUT]: 模板与脚本使用固定翻译键。
+# [OUTPUT]: 提供en界面文案。
+# [POS]: 主题语言目录；与其他语言保持相同键。
+# [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+menu_home:
+  other: HOME
+menu_archive:
+  other: ARCHIVE
+menu_tags:
+  other: TAGS
+menu_categories:
+  other: CATEGORIES
+menu_friends:
+  other: BLOGROLL
+menu_about:
+  other: ABOUT
+menu_github:
+  other: GITHUB
+menu_rss:
+  other: RSS
+menu_portfolio:
+  other: PORTFOLIO
+nav_search:
+  other: Search
+nav_search_placeholder:
+  other: Search...
+nav_current_language:
+  other: English
+nav_languages_en:
+  other: English
+nav_languages_zh:
+  other: 中文
+nav_languages_jp:
+  other: 日本語
+nav_more:
+  other: MORE
+nav_close:
+  other: CLOSE
+search_close:
+  other: Close
+search_description:
+  other: Enter keywords to search posts
+search_results:
+  other: Search Results
+search_no_results:
+  other: No results found
+search_loading:
+  other: Loading...
+code_expand:
+  other: Expand
+code_fold:
+  other: Fold
+code_copy:
+  other: Copy
+code_copied:
+  other: Copied
+code_copy_failed:
+  other: Copy failed
+friendlinks:
+  other: Blogrolls
+archive_title:
+  other: Archive
+tags_title:
+  other: Tags
+tag_page_description:
+  other: A list of all articles with the '%s' tag.
+categories_title:
+  other: Categories
+category_page_description:
+  other: A list of all articles in the '%s' category.
+prev:
+  other: PREV
+next:
+  other: NEXT
+prev_post:
+  other: PREV POST
+next_post:
+  other: NEXT POST
+more:
+  other: '...MORE'
+translated:
+  other: Translate · Original Link
+reply_to:
+  other: Reply to
+skip_content:
+  other: Skip to main content
+back_to_top:
+  other: Back to top
+theme_toggle:
+  other: Switch theme
+nav_menu:
+  other: Menu
+not_found:
+  other: This page could not be found.
+permalink:
+  other: Permalink
+date_format:
+  other: 01/02/2006
+webmention_empty:
+  other: No Webmentions yet
+load_failed:
+  other: Unable to load. Please try again.
+view_original:
+  other: View original
+anonymous:
+  other: Anonymous

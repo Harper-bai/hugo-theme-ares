@@ -1,0 +1,14 @@
+{{/*
+[INPUT]: 主题翻译文案与 MathJax、搜索、分析、Webmention 开关。
+[OUTPUT]: 原生交互脚本与显式启用的第三方脚本。
+[POS]: body 末端；基础交互没有外部运行依赖。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+<script defer src="{{ "js/ares.js" | relURL }}" data-expand="{{ i18n "code_expand" }}" data-fold="{{ i18n "code_fold" }}" data-copy="{{ i18n "code_copy" }}" data-copied="{{ i18n "code_copied" }}" data-copy-failed="{{ i18n "code_copy_failed" }}"></script>
+{{ if .Site.Params.search.enable }}<script defer src="{{ "js/search.js" | relURL }}"></script>{{ end }}
+{{ if and .Site.Params.webmention.enable .IsPage }}<script defer src="{{ "js/webmention.js" | relURL }}"></script>{{ end }}
+{{ if .Param "math" }}<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>{{ end }}
+{{ with .Site.Params.ga }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '{{ . }}');</script>
+{{ end }}

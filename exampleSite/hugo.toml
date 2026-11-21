@@ -1,0 +1,101 @@
+# [INPUT]: 继承父目录 Ares 主题的默认配置。
+# [OUTPUT]: 提供可独立预览的多语言示例站点。
+# [POS]: 示例入口；主题默认参数位于 ../hugo.toml。
+# [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+baseURL = "https://example.org/"
+title = "Ares"
+theme = "hugo-theme-ares"
+themesDir = "../.."
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+hasCJKLanguage = true
+timeZone = "Asia/Shanghai"
+
+[[module.mounts]]
+  source = "content"
+  target = "content"
+  files = ["! AGENTS.md", "! **/AGENTS.md"]
+
+[pagination]
+  pagerSize = 2
+
+[languages.zh]
+  locale = "zh-CN"
+  label = "中文"
+  weight = 1
+
+[languages.en]
+  locale = "en-US"
+  label = "English"
+  weight = 2
+
+[languages.ja]
+  locale = "ja-JP"
+  label = "日本語"
+  weight = 3
+
+[params]
+  author = "Ares"
+  description = "记录思考，分享日常。"
+  mainSections = ["posts"]
+  math = false
+
+  [params.search]
+    enable = true
+    field = "post"
+    content = true
+    limit = 50
+
+  [[params.friend_links]]
+    name = "Hugo"
+    url = "https://gohugo.io/"
+    description = "快速、灵活的静态网站生成器。"
+    lang = "zh"
+  [[params.friend_links]]
+    name = "Cytrogen"
+    url = "https://github.com/cytrogen/hexo-theme-ares"
+    description = "Ares 原主题作者。"
+    lang = "zh"
+  [[params.friend_links]]
+    name = "Hugo"
+    url = "https://gohugo.io/"
+    description = "The world's fastest framework for building websites."
+    lang = "en"
+  [[params.friend_links]]
+    name = "Hugo"
+    url = "https://gohugo.io/"
+    description = "高速で柔軟な静的サイトジェネレーター。"
+    lang = "ja"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[outputFormats.RSS]
+  baseName = "atom"
+
+[outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "search"
+  isPlainText = true
+  notAlternative = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [["\\[", "\\]"], ["$$", "$$"]]
+    inline = [["\\(", "\\)"]]
+
+[markup.highlight]
+  noClasses = false
+  guessSyntax = false

@@ -1,0 +1,10 @@
+{{/*
+[INPUT]: 字典 page/source 与 date_format；source 控制原文标签。
+[OUTPUT]: 原版日期行与可选原文链接。
+[POS]: 首页、正文和归档共享的文章元信息。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+<div class="post-info">
+  {{ if not .page.Date.IsZero }}<time class="post-date dt-published" datetime="{{ .page.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .page.Date | time.Format (.page.Site.Params.date_format | default (i18n "date_format")) }}</time>{{ end }}
+  {{ if .source }}{{ with .page.Params.from }}<a class="post-from" href="{{ . }}" target="_blank" rel="noopener noreferrer" title="{{ . }}">{{ i18n "translated" }}</a>{{ end }}{{ end }}
+</div>

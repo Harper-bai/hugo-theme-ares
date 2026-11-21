@@ -1,0 +1,28 @@
+{{/*
+[INPUT]: Page 与 params.nav 的主导航、副导航、语言按钮。
+[OUTPUT]: 保持原版嵌套的桌面导航和移动菜单。
+[POS]: 全站 header 的唯一导航；交互继续使用原 CSS。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+{{ $primary := .Site.Params.nav.primary.links | default slice }}
+{{ $secondary := .Site.Params.nav.secondary.links | default slice }}
+<nav class="site-nav" aria-label="{{ i18n "nav_menu" }}">
+  <div class="nav-main">
+    <div class="nav-primary">
+      {{ with $primary }}<ul class="nav-list hidden-mobile">{{ range . }}<li class="nav-item">{{ partial "nav-link.html" (dict "page" $ "item" . "class" "nav-link") }}</li>{{ end }}</ul>{{ end }}
+      {{ with .Site.Params.nav.primary.buttons }}<div class="nav-tools">{{ range . }}{{ if eq .component "language-switcher" }}{{ partial "languages.html" $ }}{{ end }}{{ end }}</div>{{ end }}
+    </div>
+    <div class="nav-controls">
+      <div class="more-menu hidden-mobile">
+        <button class="more-toggle" type="button"><span>{{ i18n "nav_more" }}</span>{{ partial "icons.html" "chevron-down" }}</button>
+        <div class="more-dropdown"><ul class="dropdown-list">{{ range $secondary }}<li class="dropdown-item">{{ partial "nav-link.html" (dict "page" $ "item" . "class" (cond (eq .type "external") "dropdown-link" "nav-link")) }}</li>{{ end }}</ul></div>
+      </div>
+      {{ if .Site.Params.search.enable }}<button class="search-toggle" type="button" aria-label="{{ i18n "nav_search" }}" title="{{ i18n "nav_search" }}">{{ partial "icons.html" "search" }}</button>{{ end }}
+      <div class="theme-switcher"><button class="theme-toggle" type="button" aria-pressed="false" aria-label="{{ i18n "theme_toggle" }}"><span class="theme-icon moon-icon">{{ partial "icons.html" "moon" }}</span><span class="theme-icon sun-icon">{{ partial "icons.html" "sun" }}</span></button></div>
+      <details class="mobile-menu-details hidden-desktop">
+        <summary class="hamburger-menu" aria-label="{{ i18n "nav_menu" }}">{{ partial "icons.html" "bars" }}<span class="menu-text">{{ i18n "nav_menu" }}</span></summary>
+        <div class="mobile-menu-dropdown"><ul class="mobile-nav-list">{{ range ($primary | append $secondary) }}<li class="mobile-nav-item">{{ partial "nav-link.html" (dict "page" $ "item" . "class" "mobile-nav-link") }}</li>{{ end }}</ul></div>
+      </details>
+    </div>
+  </div>
+</nav>
