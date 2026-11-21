@@ -1,14 +1,30 @@
 /**
- * [INPUT]: 浏览器默认样式与 CSS 选择器。
- * [OUTPUT]: 声明原版离线字体与字体度量。
- * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [INPUT]: static/fonts 的本地字体与浏览器字体分段能力。
+ * [OUTPUT]: 声明正文字体、衬线标题字体与仅覆盖数字的字体别名。
+ * [POS]: ares.scss 的字体入口；数字与标题复用同一字体文件。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
-/**
- * Modern CDN-Based Font Stack with Unicode-Range Optimization
- * Performance optimized with font-display: swap and CLS mitigation
- * Uses Google Fonts CDN WOFF2 files for optimal loading speed
- */
+// ============================================================================
+// 衬线标题与数字：共用本地 Source Serif 4 可变字体
+// ============================================================================
+
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('../fonts/source-serif4-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// 仅接管阿拉伯数字，正文中的字母与汉字继续使用原有字体。
+@font-face {
+  font-family: 'Ares Numerals';
+  src: url('../fonts/source-serif4-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0030-0039;
+}
 
 // ============================================================================
 // PRIMARY FONTS: Open Sans (Latin) with CLS mitigation fallback

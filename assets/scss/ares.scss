@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 依赖 variables、mixins、normalize、fonts、base、_partial/header、_partial/nav、_partial/theme-switcher、_partial/search、_partial/icons、_partial/post、_partial/pages、_partial/code、_partial/details、_partial/pagination、_partial/friend-links、_partial/footer、_partial/a11y、_partial/back-to-top、_partial/webmention 的 Sass 定义。
- * [OUTPUT]: 样式编译入口，按原版顺序导入各局部样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
  * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -60,13 +60,6 @@
   .home.post-list,
   .archive {
     margin-top: 0;
-  }
-
-  .post-content {
-    h2, h3, h4, h5, h6 {
-      max-width: 300px;
-      left: 15px;
-    }
   }
 
   .ds-thread,

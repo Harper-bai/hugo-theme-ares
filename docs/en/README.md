@@ -9,11 +9,13 @@
 
 [中文](../../README.md)
 
-A Hugo port of [Hexo Theme Ares](https://github.com/cytrogen/hexo-theme-ares), keeping its page layout, local fonts, SVG icons, light and dark palettes, and mobile reading experience. Write in Markdown and use Hugo to generate the static pages.
+A Hugo port of [Hexo Theme Ares](https://github.com/cytrogen/hexo-theme-ares), keeping its single-column layout, SVG icons, light and dark palettes, and mobile reading experience. Article typography takes inspiration from [x7aNote](https://github.com/Xeonzilla/x7aNote), with serif headings, generous paragraph spacing, and serif numerals. Write in Markdown and use Hugo to generate the static pages.
 
 ![Desktop preview](../images/desktop.png)
 
 [View the mobile preview](../images/mobile.png)
+
+[View article typography](../images/article.png)
 
 ## Preview locally
 
@@ -71,8 +73,10 @@ Replace the sample articles, about text, and blogroll with your own content. Fro
 
 Features include post summaries, pagination, archives, tags, categories, blogrolls, translated pages, local search, RSS, code copying and folding, and expandable HTML sections. Optional services include Disqus, MathJax, Google Analytics, and Webmention. The example leaves these external services disabled.
 
+Articles use 18–20px body text and serif headings. A local Source Serif 4 font supplies Latin headings and Arabic numerals; CJK headings use system serif fonts. Code keeps its monospace font.
+
 See the [content guide](guide.md), [configuration reference](configuration.md), and [contributing guide](../../CONTRIBUTING.md).
 
 Optional Sass development uses `npm install` and `npm run css`. Site builds use the checked-in `static/css/ares.css`.
 
-The MIT license and upstream author credits are retained. Original design: Cytrogen, based on Hexo Theme Hermes and Hexo Theme Apollo.
+The MIT license and upstream author credits are retained. Original design: Cytrogen, based on Hexo Theme Hermes and Hexo Theme Apollo. Font licenses are included in `static/fonts/`; Source Serif 4 uses the SIL Open Font License 1.1.

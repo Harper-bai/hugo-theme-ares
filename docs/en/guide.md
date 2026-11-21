@@ -21,6 +21,14 @@ categories: [Technology]
 
 Place `<!--more-->` between the homepage summary and the rest of the article. The spaced form, `<!-- more -->`, is also supported. Without a separator, the homepage displays the full article. Drafts are excluded from normal builds, search, and RSS.
 
+## Article typography
+
+Articles use 18–20px body text with a line height of 1.75. Serif headings decrease in size by level. Paragraphs, lists, quotations, and tables share a spacing rhythm. Mobile articles have side gutters, and long headings can use the full text width. Heading anchors appear on hover or keyboard focus.
+
+Source Serif 4 is bundled locally for Latin headings and Arabic numerals in dates, years, lists, and prose. CJK headings use system serif fonts. Body letters and CJK text retain their sans-serif fonts. Code, line numbers, and inline code use JetBrains Mono. Numbers need no special markup or script.
+
+## Pages and code
+
 Create `content/archives/_index.en.md` with `layout: archives`. The archive must be a section page to support Hugo pagination. Tags and categories are generated automatically. Create `content/friends.en.md` with `layout: friends` for the blogroll. Define cards in `params.friend_links` with `lang = "en"`.
 
 Fenced code blocks support Hugo attributes:

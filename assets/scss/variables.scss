@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 依赖 sass:map 的 Sass 定义。
- * [OUTPUT]: 定义主题颜色、字体、导航图标尺寸、断点与间距变量。
+ * [OUTPUT]: 定义颜色、正文与标题字体、导航尺寸及布局变量。
  * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -124,7 +124,8 @@ $h1-font-size: 2em;
 $h2-font-size: 1.5em;
 
 // Optimized font stacks with CLS mitigation and smart unicode-range loading
-$base-font-family: 'Open Sans', 'Open Sans Fallback', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+$base-font-family: 'Ares Numerals', 'Open Sans', 'Open Sans Fallback', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+$heading-font-family: 'Source Serif 4', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK JP', 'Yu Mincho', 'Hiragino Mincho ProN', Georgia, serif;
 $code-font-family: 'JetBrains Mono', 'SF Mono', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
 $special-font-family: 'Open Sans', 'Open Sans Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
