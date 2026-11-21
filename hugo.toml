@@ -1,6 +1,6 @@
 # [INPUT]: Hugo 站点配置覆盖这些主题默认值。
-# [OUTPUT]: 提供页面输出、Markdown 选项与主题参数。
-# [POS]: 主题默认配置；示例站只覆盖站点身份与语言。
+# [OUTPUT]: 提供六篇分页、页面输出、Markdown 选项与主题参数。
+# [POS]: 主题默认配置；完整站点配置见 exampleSite/hugo.toml。
 # [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 
 ignoreFiles = ['(^|/)AGENTS\.md$']
@@ -19,7 +19,7 @@ ignoreFiles = ['(^|/)AGENTS\.md$']
   files = ["! AGENTS.md", "! **/AGENTS.md"]
 
 [pagination]
-  pagerSize = 10
+  pagerSize = 6
 
 [taxonomies]
   category = "categories"

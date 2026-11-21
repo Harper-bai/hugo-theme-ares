@@ -25,7 +25,7 @@ cd hugo-theme-ares
 hugo server --source exampleSite
 ```
 
-Open the address printed by Hugo, usually `http://localhost:1313/`. Save changes in `exampleSite/content/` to update the preview. The example enables Chinese, English, and Japanese, with two posts per page.
+Open the address printed by Hugo, usually `http://localhost:1313/`. Save changes in `exampleSite/content/` to update the preview. The example enables Chinese, English, and Japanese. The homepage shows up to six posts per page.
 
 Build the example with `hugo --source exampleSite --minify`. Its output goes to `exampleSite/public/`.
 

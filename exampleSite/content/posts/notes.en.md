@@ -60,7 +60,7 @@ cp -R themes/ares/exampleSite/content/. content/
 hugo server
 ```
 
-The example uses two posts per page so pagination is easy to try. Change `pagerSize` under `[pagination]` to suit your blog.
+The homepage shows up to six posts per page. Additional posts appear on the next page. Change `pagerSize` under `[pagination]` to suit your blog.
 
 ## Write the first post
 

@@ -60,7 +60,7 @@ cp -R themes/ares/exampleSite/content/. content/
 hugo server
 ```
 
-示例每页显示两篇文章，方便体验分页。自己的站点可以调整 `[pagination]` 中的 `pagerSize`。
+首页每页最多显示 6 篇文章，超过的文章会进入下一页。自己的站点可以调整 `[pagination]` 中的 `pagerSize`。
 
 ## 换成第一篇自己的文章
 

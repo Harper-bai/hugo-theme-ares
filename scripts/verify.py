@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 [INPUT]: Hugo 可执行文件、介绍文章示例站与主题资源。
-[OUTPUT]: 构建、站内链接、语言隔离与可选功能的验证结果。
+[OUTPUT]: 构建、六篇分页边界、站内链接与可选功能的验证结果。
 [POS]: 独立验证入口；不依赖 Python 第三方库。
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 """
@@ -105,11 +105,11 @@ def check_example(destination, base_path):
         for page in ["index.html", "about/index.html", "archives/index.html", "friends/index.html", "tags/index.html", "categories/index.html", "404.html"]:
             require((destination / lang / page).exists(), f"Missing {lang}{page}")
     home = Document(destination / "index.html")
-    require(len(home.with_class("post-list-item")) == 2, "Homepage pagination failed")
-    require((destination / "page/2/index.html").exists(), "Missing homepage page 2")
-    require((destination / "archives/page/2/index.html").exists(), "Missing archive page 2")
-    archive2 = Document(destination / "archives/page/2/index.html")
-    require("2025" in archive2.text, "Archive year group missing")
+    require(len(home.with_class("post-list-item")) == 4, "Homepage posts missing")
+    require(not (destination / "page/2/index.html").exists(), "Premature homepage page 2")
+    require(not (destination / "archives/page/2/index.html").exists(), "Premature archive page 2")
+    archive = Document(destination / "archives/index.html")
+    require("2025" in archive.text, "Archive year group missing")
     writing = Document(destination / "posts/design/index.html")
     require(len(writing.with_class("highlight")) == 2, "Code hook failed")
     require(len(writing.with_class("gutter")) == 2, "Code line numbers missing")
@@ -131,12 +131,48 @@ def write_page(source, name, content):
     path.write_text(content)
 
 
+def example_config():
+    config = (ROOT / "exampleSite/hugo.toml").read_text()
+    config = config.replace('themesDir = "../.."', f'themesDir = "{ROOT.parent.as_posix()}"')
+    return config.replace('theme = "hugo-theme-ares"', f'theme = "{ROOT.name}"')
+
+
+def check_pagination(hugo, workspace):
+    source = workspace / "pagination-site"
+    source.mkdir()
+    (source / "hugo.toml").write_text(example_config())
+    shutil.copytree(ROOT / "exampleSite/content", source / "content")
+    output = workspace / "pagination-output"
+    for count in range(5, 8):
+        write_page(source, f"posts/pagination-{count}.zh.md", f"---\ntitle: Pagination {count}\ndate: 2025-01-{count:02d}\n---\n\nPagination boundary article {count}.\n")
+        if count < 6:
+            continue
+        build(hugo, source, output, "/blog")
+        for prefix, item_class in [("", "post-list-item"), ("archives/", "post-item")]:
+            first = Document(output / prefix / "index.html")
+            require(len(first.with_class(item_class)) == 6, f"Wrong first-page count: {prefix}, {count} posts")
+            second_path = output / prefix / "page/2/index.html"
+            if count == 6:
+                require(not second_path.exists(), f"Unexpected second page: {prefix}")
+                continue
+            second = Document(second_path)
+            require(len(second.with_class(item_class)) == 1, f"Wrong second-page count: {prefix}")
+            next_links = [attrs.get("href") for _, attrs in first.elements if attrs.get("class") == "next"]
+            prev_links = [attrs.get("href") for _, attrs in second.elements if attrs.get("class") == "prev"]
+            require(next_links == [f"/blog/{prefix}page/2/"], f"Wrong next-page link: {prefix}")
+            require(prev_links == [f"/blog/{prefix}"], f"Wrong previous-page link: {prefix}")
+            require(not (output / prefix / "page/3/index.html").exists(), f"Unexpected third page: {prefix}")
+        index = json.loads((output / "search.json").read_text())
+        require(len(index) == count, "Pagination truncated search index")
+        feed = ET.parse(output / "atom.xml")
+        require(len(feed.findall("channel/item")) == count, "Pagination truncated RSS feed")
+        check_links(output, "/blog")
+
+
 def check_optional(hugo, workspace):
     source = workspace / "single-site"
     source.mkdir()
-    config = (ROOT / "exampleSite/hugo.toml").read_text()
-    config = config.replace('themesDir = "../.."', f'themesDir = "{ROOT.parent.as_posix()}"')
-    config = config.replace('theme = "hugo-theme-ares"', f'theme = "{ROOT.name}"')
+    config = example_config()
     # 单语言、标题搜索和关闭数学公式是独立配置边界。
     config = config.replace('enable = true\n    field = "post"\n    content = true', 'enable = false\n    field = "post"\n    content = false')
     config += '\n[params.webmention]\n  enable = true\n  domain = "example.org"\n'
@@ -178,6 +214,8 @@ def main():
             links = check_example(destination, base_path)
             checks += links
             print(f"PASS {name}: localized pages, pagination, search, RSS, drafts, {links} links")
+        check_pagination(args.hugo, workspace)
+        print("PASS pagination: six posts on page 1, seventh on page 2, archive links, complete search and RSS")
         check_optional(args.hugo, workspace)
         print("PASS single-language site: search disabled, title-only index, Webmention, unknown code language, legacy summary")
         print(f"All checks passed ({checks} localized links plus optional configurations).")

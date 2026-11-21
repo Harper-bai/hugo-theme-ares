@@ -30,7 +30,7 @@ The site must declare these outputs:
 
 The feed is published at `atom.xml` in RSS 2.0 format. Each language gets a separate feed and search index.
 
-Common parameters are `params.author`, `description`, `logo`, `favicon`, `startyear`, `mainSections`, and `math`. The default article section is `posts`. Configure pagination through `pagination.pagerSize`. `params.date_format` defaults to `01/02/2006` for month/day/year display; it accepts Hugo date layouts.
+Common parameters are `params.author`, `description`, `logo`, `favicon`, `startyear`, `mainSections`, and `math`. The default article section is `posts`. Configure pagination through `pagination.pagerSize`, which defaults to six posts per page on the homepage and lists. `params.date_format` defaults to `01/02/2006` for month/day/year display; it accepts Hugo date layouts.
 
 Navigation uses `params.nav.primary.links`, `primary.buttons`, and `secondary.links`. Link entries have `type`, `key`, and `path`; `name` supplies a custom label. Internal links automatically include the active language and `baseURL` subdirectory. Remove links for pages that you have not created.
 

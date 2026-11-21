@@ -38,7 +38,7 @@ cd hugo-theme-ares
 hugo server --source exampleSite
 ```
 
-在浏览器打开终端提示的本地地址（通常为 `http://localhost:1313/`）。示例站预置了中文、英文与日文内容及双篇分页配置，编辑 `exampleSite/content/` 目录中的文章即可实时查看效果。
+在浏览器打开终端提示的本地地址（通常为 `http://localhost:1313/`）。示例站预置了中文、英文与日文内容，首页每页最多展示 6 篇文章。编辑 `exampleSite/content/` 目录中的文章即可实时查看效果。
 
 生成静态站点文件：
 

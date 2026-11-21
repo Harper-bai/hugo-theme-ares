@@ -1,5 +1,5 @@
 # [INPUT]: 继承父目录 Ares 主题的默认配置。
-# [OUTPUT]: 提供可独立预览的多语言示例站点。
+# [OUTPUT]: 提供每页六篇的多语言示例站点。
 # [POS]: 示例入口；主题默认参数位于 ../hugo.toml。
 # [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 baseURL = "https://example.org/"
@@ -18,7 +18,7 @@ timeZone = "Asia/Shanghai"
   files = ["! AGENTS.md", "! **/AGENTS.md"]
 
 [pagination]
-  pagerSize = 2
+  pagerSize = 6
 
 [languages.zh]
   locale = "zh-CN"

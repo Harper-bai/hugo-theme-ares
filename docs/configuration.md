@@ -45,7 +45,7 @@
 | `baseURL` | 站点提供 | 域名，可含 `/blog/` 子目录 |
 | `title` | 站点提供 | 博客名称 |
 | `defaultContentLanguage` | `zh`（示例） | 默认语言 |
-| `pagination.pagerSize` | `10` | 首页与列表每页篇数 |
+| `pagination.pagerSize` | `6` | 首页与列表每页最多展示的篇数 |
 | `params.mainSections` | `["posts"]` | 首页、归档、搜索和订阅的文章分区 |
 | `params.author` | `Ares` | 作者署名 |
 | `params.date_format` | `01/02/2006` | 默认月/日/年；使用 Hugo 日期格式 |

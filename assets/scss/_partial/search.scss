@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 依赖 sass:color、../variables、../mixins 的 Sass 定义。
- * [OUTPUT]: 定义搜索弹窗与结果列表。
+ * [OUTPUT]: 定义搜索弹窗与结果列表，入口图标使用统一导航尺寸。
  * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -42,8 +42,8 @@
   }
 
   .icon {
-    width: 16px;
-    height: 16px;
+    width: var(--nav-icon-size);
+    height: var(--nav-icon-size);
   }
 }
 

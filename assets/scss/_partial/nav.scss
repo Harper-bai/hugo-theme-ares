@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 依赖 sass:color、../variables、../mixins 的 Sass 定义。
- * [OUTPUT]: 定义桌面导航、语言菜单与移动菜单。
+ * [OUTPUT]: 定义桌面与移动导航，统一使用导航文字和图标尺寸。
  * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -33,8 +33,8 @@
 
   .icon {
     margin-left: 0.3rem;
-    width: 0.875em;
-    height: 0.875em;
+    width: var(--nav-icon-size);
+    height: var(--nav-icon-size);
     flex-shrink: 0;
   }
 }
@@ -196,8 +196,8 @@
 
         .icon {
           margin-left: 0.5rem;
-          width: 0.875em;
-          height: 0.875em;
+          width: var(--nav-icon-size);
+          height: var(--nav-icon-size);
           opacity: 0.7;
           flex-shrink: 0;
         }
@@ -338,8 +338,8 @@
           }
 
           .icon {
-            width: 0.875em;
-            height: 0.875em;
+            width: var(--nav-icon-size);
+            height: var(--nav-icon-size);
             flex-shrink: 0;
           }
         }
@@ -374,8 +374,8 @@
     .icon {
       margin-right: 0.3rem;
       margin-left: 0;
-      width: 0.875em;
-      height: 0.875em;
+      width: var(--nav-icon-size);
+      height: var(--nav-icon-size);
       flex-shrink: 0;
     }
   }
