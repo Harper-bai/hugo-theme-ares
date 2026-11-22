@@ -43,7 +43,7 @@
   overflow: hidden;
 
   &:hover {
-    background-color: rgba($primary-color, 0.1);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
     color: $primary-color;
     border-bottom-color: transparent;
   }

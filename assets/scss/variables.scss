@@ -1,47 +1,50 @@
 /**
- * [INPUT]: 依赖 sass:map 的 Sass 定义。
- * [OUTPUT]: 定义颜色、正文与标题字体、导航尺寸及布局变量。
- * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [INPUT]: 参考 x7aNote 的基础配色与 Flexoki 语法色。
+ * [OUTPUT]: 定义 Ares 明暗配色、字体栈、表格与布局变量。
+ * [POS]: 全站设计变量入口；局部样式消费语义颜色。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
-@use "sass:map";
 
+// ============================================================================
+// 浅色沿用 x7aNote 的纸色、炭灰与青绿。
+// ============================================================================
 :root {
-  // Core brand colors
-  --color-primary: #5454f8;
-  --color-secondary: #267B54;
-  --color-accent: #4088b8;
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  --color-primary: oklch(43% 0.065 188);
+  --color-secondary: #536907;
+  --color-accent: #1c6c66;
+  --color-success: #536907;
+  --color-warning: #9d6b00;
+  --color-danger: #942822;
 
-  // Text colors with proper semantic naming
-  --text-primary: #2c3e50;        /* Main text - WCAG AA compliant on white */
-  --text-secondary: #64748b;      /* Supporting text - improved contrast */
-  --text-tertiary: #94a3b8;       /* Muted text */
-  --text-inverse: #ffffff;        /* Text on dark backgrounds */
+  --text-primary: oklch(32% 0.004 85);
+  --text-secondary: oklch(45% 0.005 92);
+  --text-tertiary: var(--text-secondary);
+  --text-inverse: #fffcf0;
 
-  // Surface colors
-  --surface-background: #ffffff;
-  --surface-elevated: #f8fafc;    /* Cards, dropdowns */
-  --surface-overlay: #f1f5f9;     /* Modals, overlays */
-  --surface-interactive: #e2e8f0; /* Hover states */
+  --surface-background: oklch(95% 0.015 98);
+  --surface-elevated: oklch(99% 0.016 95);
+  --surface-overlay: #ece9de;
+  --surface-interactive: #e6e4d9;
 
-  // Border and outline colors
-  --border-primary: #e2e8f0;      /* Main borders */
-  --border-secondary: #cbd5e1;    /* Subtle borders */
-  --border-interactive: var(--color-primary); /* Focus, active borders */
+  --border-primary: oklch(77% 0.013 96);
+  --border-secondary: oklch(62% 0.008 96);
+  --border-interactive: var(--color-primary);
 
-  // Code and syntax highlighting
-  --code-background: #f8fafc;
-  --code-text: #475569;
-  --code-keyword: #e96900;           /* Light theme uses orange */
-  --code-string: #22c55e;
-  --code-number: #8b5cf6;
-  --code-comment: #94a3b8;
+  // 语法颜色使用同一组低饱和色，随明暗模式切换。
+  --code-background: var(--surface-elevated);
+  --code-text: var(--text-primary);
+  --code-keyword: #942822;
+  --code-attribute: #9d4310;
+  --code-string: #536907;
+  --code-number: #1a4f8c;
+  --code-function: #4f3685;
+  --code-comment: #575653;
 
-  // Interactive states using modern color-mix()
-  --color-primary-hover: color-mix(in srgb, var(--color-primary) 85%, black);
+  // 表格与交互色从全站配色派生。
+  --table-header: color-mix(in srgb, var(--color-primary) 7%, var(--surface-elevated));
+  --table-stripe: color-mix(in srgb, var(--surface-background) 35%, var(--surface-elevated));
+  --table-hover: color-mix(in srgb, var(--color-primary) 5%, var(--surface-elevated));
+  --color-primary-hover: oklch(35% 0.07 188);
   --color-secondary-hover: color-mix(in srgb, var(--color-secondary) 85%, black);
   --surface-interactive-hover: color-mix(in srgb, var(--surface-interactive) 80%, var(--color-primary));
 
@@ -56,41 +59,39 @@
   --font-size-code: clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem);      /* ~12.8px to 14.4px */
 }
 
-// Dark theme - Enhanced for WCAG AA compliance
+// ============================================================================
+// 暗色沿相同色阶适配，保持暖灰正文与青绿链接。
+// ============================================================================
 [data-theme="dark"] {
-  // Brand colors adjusted for dark theme
-  --color-primary: #818cf8;       /* Higher contrast on dark */
-  --color-secondary: #34d399;
-  --color-accent: #60a5fa;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #f87171;
+  --color-primary: #87d3c3;
+  --color-secondary: #a6bb6a;
+  --color-accent: #9bd7cb;
+  --color-success: #a6bb6a;
+  --color-warning: #d8b46b;
+  --color-danger: #e49f91;
 
-  // Text colors - All WCAG AA compliant
-  --text-primary: #f1f5f9;        /* 15.3:1 contrast ratio */
-  --text-secondary: #cbd5e1;      /* 10.4:1 contrast ratio */
-  --text-tertiary: #94a3b8;       /* 6.1:1 contrast ratio */
-  --text-inverse: #0f172a;
+  --text-primary: #e6e4d9;
+  --text-secondary: #b7b5ac;
+  --text-tertiary: #9f9d96;
+  --text-inverse: #100f0f;
 
-  // Surface colors
-  --surface-background: #0f172a;  /* Dark navy for better contrast */
-  --surface-elevated: #1e293b;    /* Elevated surfaces */
-  --surface-overlay: #334155;     /* Overlays and modals */
-  --surface-interactive: #475569; /* Interactive elements */
+  --surface-background: #100f0f;
+  --surface-elevated: #1c1b1a;
+  --surface-overlay: #242321;
+  --surface-interactive: #282726;
 
-  // Borders
-  --border-primary: #334155;      /* Visible borders */
-  --border-secondary: #1e293b;    /* Subtle separators */
+  --border-primary: #403e3c;
+  --border-secondary: #575653;
 
-  // Code syntax with proper contrast
-  --code-background: #1e293b;
-  --code-text: #e2e8f0;
-  --code-keyword: #60a5fa;
-  --code-string: #34d399;
-  --code-number: #a78bfa;
-  --code-comment: #64748b;
+  --code-background: var(--surface-elevated);
+  --code-text: var(--text-primary);
+  --code-keyword: #e49f91;
+  --code-attribute: #e0b080;
+  --code-string: #a6bb6a;
+  --code-number: #92b3cf;
+  --code-function: #c0afd7;
+  --code-comment: #9f9d96;
 
-  // Interactive states
   --color-primary-hover: color-mix(in srgb, var(--color-primary) 80%, white);
   --color-secondary-hover: color-mix(in srgb, var(--color-secondary) 80%, white);
   --surface-interactive-hover: color-mix(in srgb, var(--surface-interactive) 70%, var(--color-primary));
@@ -123,10 +124,11 @@ $code-font-size: 0.9em;
 $h1-font-size: 2em;
 $h2-font-size: 1.5em;
 
-// Optimized font stacks with CLS mitigation and smart unicode-range loading
-$base-font-family: 'Ares Numerals', 'Open Sans', 'Open Sans Fallback', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+// 中文优先使用系统字体；数字的下载字体与本机回退均为衬线。
+$base-font-family: 'Ares Numerals', 'Ares Numerals Fallback', 'Open Sans', 'Open Sans Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif;
 $heading-font-family: 'Source Serif 4', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK JP', 'Yu Mincho', 'Hiragino Mincho ProN', Georgia, serif;
-$code-font-family: 'JetBrains Mono', 'SF Mono', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
+// 代码直接使用系统等宽字体，避免下载完成后改变字形与行高。
+$code-font-family: ui-monospace, 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
 $special-font-family: 'Open Sans', 'Open Sans Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
 $base-spacing: 1rem;

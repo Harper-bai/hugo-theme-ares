@@ -1,5 +1,5 @@
 /**
- * [INPUT]: 依赖 variables、mixins、normalize、fonts、base、_partial/header、_partial/nav、_partial/theme-switcher、_partial/search、_partial/icons、_partial/post、_partial/pages、_partial/code、_partial/details、_partial/pagination、_partial/friend-links、_partial/footer、_partial/a11y、_partial/back-to-top、_partial/webmention 的 Sass 定义。
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
  * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
  * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
@@ -16,6 +16,7 @@
 @use '_partial/search';
 @use '_partial/icons';
 @use '_partial/post';
+@use '_partial/table';
 @use '_partial/pages';
 @use '_partial/code';
 @use '_partial/details';

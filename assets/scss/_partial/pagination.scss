@@ -1,6 +1,6 @@
 /**
- * [INPUT]: 依赖 ../variables 的 Sass 定义。
- * [OUTPUT]: 定义列表和文章分页按钮。
+ * [INPUT]: 依赖 ../variables 的主色、反色文字与圆角。
+ * [OUTPUT]: 定义随明暗配色切换的列表和文章分页按钮。
  * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -16,13 +16,13 @@
       margin: 0 4px;
       padding: 4px 12px;
       border-radius: $border-radius;
-      border-bottom: 4px solid #3aa373;
+      border-bottom: 4px solid var(--color-primary-hover);
       font-size: 14px;
-      color: white;
-      background-color: #4fc08d;
+      color: var(--text-inverse);
+      background-color: var(--color-primary);
 
       &:hover {
-        background-color: #22bd77;
+        background-color: var(--color-primary-hover);
       }
     }
   }

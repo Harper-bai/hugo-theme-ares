@@ -88,6 +88,8 @@ back_to_top:
   other: 返回顶部
 theme_toggle:
   other: 切换主题
+table_scroll:
+  other: 文章表格，可横向滚动
 nav_menu:
   other: 菜单
 not_found:

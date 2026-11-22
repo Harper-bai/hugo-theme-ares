@@ -1,6 +1,6 @@
 /**
- * [INPUT]: 依赖 ../variables 的 Sass 定义。
- * [OUTPUT]: 定义页脚与署名。
+ * [INPUT]: 依赖 ../variables 的边框、次要文字与主色。
+ * [OUTPUT]: 定义随明暗配色切换的页脚与署名。
  * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -15,13 +15,13 @@ footer {
       text-align: center;
 
       p, a {
-        color: #aaa;
+        color: var(--text-secondary);
         font-size: 14px;
         font-weight: 100;
       }
 
       a:hover {
-        color: #888;
+        color: var(--color-primary-hover);
       }
     }
   }

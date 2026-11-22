@@ -1,0 +1,28 @@
+{{/*
+[INPUT]: Goldmark 表头、正文单元格、对齐信息与界面翻译。
+[OUTPUT]: 带列标题语义与可聚焦滚动容器的 Markdown 表格。
+[POS]: 正文表格渲染入口；代码表格由 render-codeblock 生成。
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+*/}}
+<div class="table-wrap" role="region" aria-label="{{ i18n "table_scroll" }}" tabindex="0">
+  <table>
+    <thead>
+      {{- range .THead }}
+      <tr>
+        {{- range . }}
+        <th scope="col"{{ with .Alignment }} class="align-{{ . }}"{{ end }}>{{ .Text }}</th>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </thead>
+    <tbody>
+      {{- range .TBody }}
+      <tr>
+        {{- range . }}
+        <td{{ with .Alignment }} class="align-{{ . }}"{{ end }}>{{ .Text }}</td>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>

@@ -9,7 +9,7 @@
 
 [English](docs/en/README.md)
 
-Hugo Theme Ares 移植自 [Cytrogen/hexo-theme-ares](https://github.com/cytrogen/hexo-theme-ares)，专为注重文字表达的个人博客设计。主题保留 Ares 的单栏布局、SVG 图标、明暗配色与移动端交互，正文排版借鉴 [x7aNote](https://github.com/Xeonzilla/x7aNote) 的阅读节奏，采用衬线标题、宽松段落与衬线数字。日常撰写与发布仅依赖标准 Markdown 文件与 Hugo，页面构建完全静态化，无需 Node.js 运行环境。
+Hugo Theme Ares 移植自 [Cytrogen/hexo-theme-ares](https://github.com/cytrogen/hexo-theme-ares)，专为注重文字表达的个人博客设计。主题保留 Ares 的单栏布局、SVG 图标与移动端交互，配色和正文排版参考 [x7aNote](https://github.com/Xeonzilla/x7aNote)，采用暖纸色、炭灰正文、青绿链接、衬线标题与宽松段落。暗色模式沿同一色系适配。日常撰写与发布仅依赖标准 Markdown 文件与 Hugo，页面构建完全静态化，无需 Node.js 运行环境。
 
 ![桌面端预览](docs/images/desktop.png)
 
@@ -19,8 +19,8 @@ Hugo Theme Ares 移植自 [Cytrogen/hexo-theme-ares](https://github.com/cytrogen
 
 ## 主题特性
 
-- **阅读排版**：单栏居中布局，搭配衬线标题、18–20px 正文与统一段落间距。日期、年份和正文中的阿拉伯数字使用本地 Source Serif 4；代码使用等宽字体。支持首页摘要与分页、年份归档、分类与标签聚合、关于页及友情链接。
-- **明暗主题**：原生支持浅色与深色模式，默认跟随系统偏好，支持手动切换并在本地保存选择。
+- **阅读排版**：单栏居中布局，搭配衬线标题、18–20px 正文与统一段落间距。日期、年份和正文中的阿拉伯数字优先使用随主题提供的 Source Serif 4，加载未赶上首屏时使用本机衬线字体；中文正文优先使用本机字体，代码使用本机等宽字体。支持首页摘要与分页、年份归档、分类与标签聚合、关于页及友情链接。
+- **明暗主题**：浅色采用暖纸色、炭灰与深青绿，暗色采用炭黑、暖灰与浅青绿。默认跟随系统偏好，支持手动切换并在本地保存选择。
 - **移动适配**：原生响应式设计，搭配轻量抽屉导航菜单与原生折叠控件，无多余外部依赖。
 - **多语言支持**：内置中文、英文、日文界面文案与独立内容隔离。跨语言文章支持译文精准跳转；缺少译文时平滑回退至目标语言首页。
 - **本地搜索**：基于轻量静态 JSON 索引的客户端搜索，无需第三方搜索服务或动态后端，输入即时呈现结果。

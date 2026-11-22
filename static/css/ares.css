@@ -1,29 +1,46 @@
 @charset "UTF-8";
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 参考 x7aNote 的基础配色与 Flexoki 语法色。
+ * [OUTPUT]: 定义 Ares 明暗配色、字体栈、表格与布局变量。
+ * [POS]: 全站设计变量入口；局部样式消费语义颜色。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 :root {
-  --color-primary: #5454f8;
-  --color-secondary: #267B54;
-  --color-accent: #4088b8;
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --text-primary: #2c3e50; /* Main text - WCAG AA compliant on white */
-  --text-secondary: #64748b; /* Supporting text - improved contrast */
-  --text-tertiary: #94a3b8; /* Muted text */
-  --text-inverse: #ffffff; /* Text on dark backgrounds */
-  --surface-background: #ffffff;
-  --surface-elevated: #f8fafc; /* Cards, dropdowns */
-  --surface-overlay: #f1f5f9; /* Modals, overlays */
-  --surface-interactive: #e2e8f0; /* Hover states */
-  --border-primary: #e2e8f0; /* Main borders */
-  --border-secondary: #cbd5e1; /* Subtle borders */
-  --border-interactive: var(--color-primary); /* Focus, active borders */
-  --code-background: #f8fafc;
-  --code-text: #475569;
-  --code-keyword: #e96900; /* Light theme uses orange */
-  --code-string: #22c55e;
-  --code-number: #8b5cf6;
-  --code-comment: #94a3b8;
-  --color-primary-hover: color-mix(in srgb, var(--color-primary) 85%, black);
+  --color-primary: oklch(43% 0.065 188);
+  --color-secondary: #536907;
+  --color-accent: #1c6c66;
+  --color-success: #536907;
+  --color-warning: #9d6b00;
+  --color-danger: #942822;
+  --text-primary: oklch(32% 0.004 85);
+  --text-secondary: oklch(45% 0.005 92);
+  --text-tertiary: var(--text-secondary);
+  --text-inverse: #fffcf0;
+  --surface-background: oklch(95% 0.015 98);
+  --surface-elevated: oklch(99% 0.016 95);
+  --surface-overlay: #ece9de;
+  --surface-interactive: #e6e4d9;
+  --border-primary: oklch(77% 0.013 96);
+  --border-secondary: oklch(62% 0.008 96);
+  --border-interactive: var(--color-primary);
+  --code-background: var(--surface-elevated);
+  --code-text: var(--text-primary);
+  --code-keyword: #942822;
+  --code-attribute: #9d4310;
+  --code-string: #536907;
+  --code-number: #1a4f8c;
+  --code-function: #4f3685;
+  --code-comment: #575653;
+  --table-header: color-mix(in srgb, var(--color-primary) 7%, var(--surface-elevated));
+  --table-stripe: color-mix(in srgb, var(--surface-background) 35%, var(--surface-elevated));
+  --table-hover: color-mix(in srgb, var(--color-primary) 5%, var(--surface-elevated));
+  --color-primary-hover: oklch(35% 0.07 188);
   --color-secondary-hover: color-mix(in srgb, var(--color-secondary) 85%, black);
   --surface-interactive-hover: color-mix(in srgb, var(--surface-interactive) 80%, var(--color-primary));
   --font-size-body: clamp(1rem, 0.9rem + 0.5vw, 1.125rem); /* ~16px to 18px */
@@ -37,33 +54,53 @@
 }
 
 [data-theme=dark] {
-  --color-primary: #818cf8; /* Higher contrast on dark */
-  --color-secondary: #34d399;
-  --color-accent: #60a5fa;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #f87171;
-  --text-primary: #f1f5f9; /* 15.3:1 contrast ratio */
-  --text-secondary: #cbd5e1; /* 10.4:1 contrast ratio */
-  --text-tertiary: #94a3b8; /* 6.1:1 contrast ratio */
-  --text-inverse: #0f172a;
-  --surface-background: #0f172a; /* Dark navy for better contrast */
-  --surface-elevated: #1e293b; /* Elevated surfaces */
-  --surface-overlay: #334155; /* Overlays and modals */
-  --surface-interactive: #475569; /* Interactive elements */
-  --border-primary: #334155; /* Visible borders */
-  --border-secondary: #1e293b; /* Subtle separators */
-  --code-background: #1e293b;
-  --code-text: #e2e8f0;
-  --code-keyword: #60a5fa;
-  --code-string: #34d399;
-  --code-number: #a78bfa;
-  --code-comment: #64748b;
+  --color-primary: #87d3c3;
+  --color-secondary: #a6bb6a;
+  --color-accent: #9bd7cb;
+  --color-success: #a6bb6a;
+  --color-warning: #d8b46b;
+  --color-danger: #e49f91;
+  --text-primary: #e6e4d9;
+  --text-secondary: #b7b5ac;
+  --text-tertiary: #9f9d96;
+  --text-inverse: #100f0f;
+  --surface-background: #100f0f;
+  --surface-elevated: #1c1b1a;
+  --surface-overlay: #242321;
+  --surface-interactive: #282726;
+  --border-primary: #403e3c;
+  --border-secondary: #575653;
+  --code-background: var(--surface-elevated);
+  --code-text: var(--text-primary);
+  --code-keyword: #e49f91;
+  --code-attribute: #e0b080;
+  --code-string: #a6bb6a;
+  --code-number: #92b3cf;
+  --code-function: #c0afd7;
+  --code-comment: #9f9d96;
   --color-primary-hover: color-mix(in srgb, var(--color-primary) 80%, white);
   --color-secondary-hover: color-mix(in srgb, var(--color-secondary) 80%, white);
   --surface-interactive-hover: color-mix(in srgb, var(--surface-interactive) 70%, var(--color-primary));
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 variables 的 Sass 定义。
+ * [OUTPUT]: 提供断点、布局与按钮复用规则。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 浏览器默认样式与 CSS 选择器。
+ * [OUTPUT]: 归一化浏览器默认样式。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -113,8 +150,7 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 b,
@@ -266,29 +302,47 @@ template {
   display: none;
 }
 
+/**
+ * [INPUT]: static/fonts 字体、本机字体与 Unicode 分段能力。
+ * [OUTPUT]: 声明首屏字体与衬线数字回退；禁止下载后的延迟替换。
+ * [POS]: ares.scss 的唯一字体声明入口；head.html 预加载首屏字体。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 @font-face {
   font-family: "Source Serif 4";
   src: url("../fonts/source-serif4-latin.woff2") format("woff2");
   font-weight: 400 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
-
 @font-face {
   font-family: "Ares Numerals";
   src: url("../fonts/source-serif4-latin.woff2") format("woff2");
   font-weight: 400 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0030-0039;
 }
-
+@font-face {
+  font-family: "Ares Numerals Fallback";
+  src: local("Georgia"), local("Times New Roman"), local("Times"), local("Noto Serif"), local("Droid Serif"), local("Liberation Serif"), local("DejaVu Serif");
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0030-0039;
+}
+@font-face {
+  font-family: "Ares Numerals Fallback";
+  src: local("Georgia Bold"), local("Times New Roman Bold"), local("Times Bold"), local("Noto Serif Bold"), local("Droid Serif Bold"), local("Liberation Serif Bold"), local("DejaVu Serif Bold");
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0030-0039;
+}
 @font-face {
   font-family: "Open Sans";
   src: url("../fonts/opensans-regular-latin.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -296,7 +350,7 @@ template {
   src: url("../fonts/opensans-bold-latin.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -304,7 +358,6 @@ template {
   src: local("Arial");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
   size-adjust: 107%;
   ascent-override: 97%;
   descent-override: 25%;
@@ -315,7 +368,6 @@ template {
   src: local("Arial Bold"), local("Arial-Bold");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
   size-adjust: 107%;
   ascent-override: 97%;
   descent-override: 25%;
@@ -326,7 +378,7 @@ template {
   src: url("../fonts/notosanssc-regular-chinese.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
 }
 @font-face {
@@ -334,7 +386,7 @@ template {
   src: url("../fonts/notosanssc-bold-chinese.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
 }
 @font-face {
@@ -342,7 +394,7 @@ template {
   src: url("../fonts/jetbrainsmono-regular-latin.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   size-adjust: 94%;
   ascent-override: 92%;
@@ -354,17 +406,25 @@ template {
   src: url("../fonts/jetbrainsmono-bold-latin.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   size-adjust: 94%;
   ascent-override: 92%;
   descent-override: 22%;
   line-gap-override: 0%;
 }
-::-moz-selection {
-  color: var(--surface-background);
-  background-color: var(--color-primary);
-}
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 variables、mixins 的 Sass 定义。
+ * [OUTPUT]: 定义全站基础排版与控件默认样式。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 ::selection {
   color: var(--surface-background);
   background-color: var(--color-primary);
@@ -376,7 +436,7 @@ template {
 }
 
 html {
-  font-family: "Ares Numerals", "Open Sans", "Open Sans Fallback", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
@@ -392,7 +452,7 @@ body {
   font-size: var(--font-size-body);
   line-height: 1.6;
   background-color: var(--surface-background);
-  font-family: "Ares Numerals", "Open Sans", "Open Sans Fallback", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
 }
 
 article,
@@ -502,7 +562,7 @@ hr {
   box-sizing: content-box;
   height: 1px;
   border: 0;
-  border-top: 1px solid var(--color-border, #e1e4e8);
+  border-top: 1px solid var(--border-primary);
   margin: 1.5rem 0;
 }
 
@@ -511,7 +571,7 @@ pre {
   color: var(--code-text);
   font-size: var(--font-size-code);
   background-color: var(--code-background);
-  font-family: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
 }
 
 code {
@@ -522,7 +582,7 @@ code {
   white-space: inherit;
   font-size: var(--font-size-code);
   background-color: var(--code-background);
-  font-family: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
 }
 
 button,
@@ -584,20 +644,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-table thead {
-  background-color: var(--surface-interactive);
-}
-table thead th {
-  padding: 5px;
-  min-width: 20px;
-}
-table tbody tr:nth-child(2n) {
-  background-color: var(--surface-elevated);
-}
-table tbody td {
-  padding: 5px;
-  vertical-align: text-top;
-}
 
 fieldset {
   border: 1px solid var(--border-primary);
@@ -626,6 +672,18 @@ optgroup {
   display: none !important;
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables、../mixins 与默认 favicon.png。
+ * [OUTPUT]: 定义页头布局与默认 Logo 的暗色适配。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 header {
   min-height: 60px;
 }
@@ -674,6 +732,22 @@ header .nav-list-item a {
   line-height: 1.4;
 }
 
+[data-theme=dark] header .logo-link img[src$="/favicon.png"] {
+  filter: invert(1);
+}
+
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 sass:color、../variables、../mixins 的 Sass 定义。
+ * [OUTPUT]: 定义桌面与移动导航，统一使用导航文字和图标尺寸。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .site-nav .language-toggle, .site-nav .more-menu .more-toggle, .site-nav .nav-primary .nav-link, .site-nav .nav-controls .mobile-menu-details summary.hamburger-menu {
   display: inline-flex;
   align-items: center;
@@ -1056,6 +1130,18 @@ header .nav-list-item a {
     display: none !important;
   }
 }
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 sass:color、../variables、../mixins 的 Sass 定义。
+ * [OUTPUT]: 定义明暗主题按钮与主题过渡，图标使用统一导航尺寸。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .theme-switcher {
   position: relative;
   display: inline-flex;
@@ -1089,7 +1175,7 @@ header .nav-list-item a {
   overflow: hidden;
 }
 .theme-toggle:hover {
-  background-color: rgba(var(--color-primary), 0.1);
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
   color: var(--color-primary);
   border-bottom-color: transparent;
 }
@@ -1291,6 +1377,18 @@ footer .copyright a:hover {
   color: var(--text-secondary);
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 sass:color、../variables、../mixins 的 Sass 定义。
+ * [OUTPUT]: 定义搜索弹窗与结果列表，入口图标使用统一导航尺寸。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .search-toggle {
   background: none;
   border: none;
@@ -1302,11 +1400,6 @@ footer .copyright a:hover {
   font: inherit;
   color: inherit;
   outline: none;
-}
-.search-toggle:focus {
-  outline: none;
-}
-.search-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1318,6 +1411,9 @@ footer .copyright a:hover {
   color: var(--text-primary);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+}
+.search-toggle:focus {
+  outline: none;
 }
 .search-toggle:hover {
   background-color: var(--surface-interactive);
@@ -1388,11 +1484,6 @@ footer .copyright a:hover {
   font: inherit;
   color: inherit;
   outline: none;
-}
-.search-dialog__close:focus {
-  outline: none;
-}
-.search-dialog__close {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1402,6 +1493,9 @@ footer .copyright a:hover {
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+}
+.search-dialog__close:focus {
+  outline: none;
 }
 .search-dialog__close:hover {
   background-color: var(--surface-interactive);
@@ -1439,15 +1533,12 @@ footer .copyright a:hover {
   background-color: var(--surface-background);
   color: var(--text-primary);
   font-size: 1rem;
-  font-family: "Ares Numerals", "Open Sans", "Open Sans Fallback", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
   transition: border-color 0.3s ease-in-out;
 }
 .search-dialog__input:focus {
   outline: none;
   border-color: var(--color-primary);
-}
-.search-dialog__input::-moz-placeholder {
-  color: var(--text-tertiary);
 }
 .search-dialog__input::placeholder {
   color: var(--text-tertiary);
@@ -1616,6 +1707,12 @@ footer .copyright a:hover {
   }
 }
 /**
+ * [INPUT]: 浏览器默认样式与 CSS 选择器。
+ * [OUTPUT]: 定义 SVG 图标的共同尺寸。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
  * SVG Icon System Styles
  * Performance-optimized inline SVG icons replacing Font Awesome
  */
@@ -1652,6 +1749,18 @@ footer .copyright a:hover {
   height: 1rem;
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 variables 的字体、配色与间距，mixins 的手机断点。
+ * [OUTPUT]: 定义衬线标题、正文节奏、首页摘要入口间距与回复区块。
+ * [POS]: 文章排版入口；正文和 h-entry 共用规则，代码独立排版。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .post {
   padding-top: 1rem;
 }
@@ -1684,8 +1793,8 @@ footer .copyright a:hover {
   padding: 3px 6px;
   border-radius: 4px;
   font-size: 12px;
-  color: white;
-  background-color: #E36B6B;
+  color: var(--text-inverse);
+  background-color: var(--color-primary);
 }
 .post-reply {
   margin: 1em 0;
@@ -1743,7 +1852,7 @@ footer .copyright a:hover {
   margin: 1em 0;
   padding: 0.5em 1em;
   background: var(--color-danger);
-  color: white;
+  color: var(--text-inverse);
   border-radius: 4px;
   font-size: 0.9em;
 }
@@ -1896,26 +2005,10 @@ footer .copyright a:hover {
   color: var(--text-secondary);
   font-variant-numeric: lining-nums tabular-nums;
 }
-.post-content > table,
-.post .e-content > table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  font-size: 0.9em;
-  font-variant-numeric: lining-nums tabular-nums;
-}
-.post-content > table th,
-.post-content > table td,
-.post .e-content > table th,
-.post .e-content > table td {
-  padding: 0.5em 0.75em;
-}
-.post-content > table,
 .post-content > figure,
 .post-content > pre,
 .post-content > details,
 .post-content > hr,
-.post .e-content > table,
 .post .e-content > figure,
 .post .e-content > pre,
 .post .e-content > details,
@@ -1936,9 +2029,7 @@ footer .copyright a:hover {
 .post .e-content > :last-child {
   margin-bottom: 0;
 }
-.post-content > table,
 .post-content > figure.highlight,
-.post .e-content > table,
 .post .e-content > figure.highlight {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
 }
@@ -1951,7 +2042,7 @@ footer .copyright a:hover {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: var(--surface-elevated);
-  font-family: "Ares Numerals", "Open Sans", "Open Sans Fallback", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
 }
 .post-content .danger > p > br,
 .post .e-content .danger > p > br {
@@ -1970,7 +2061,7 @@ footer .copyright a:hover {
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  color: white;
+  color: var(--text-inverse);
   font-size: 14px;
   line-height: 20px;
   font-weight: bold;
@@ -2017,6 +2108,8 @@ footer .copyright a:hover {
   list-style: initial;
 }
 .home.post-list .read-more {
+  display: inline-block;
+  margin-block-start: 1rem;
   color: var(--color-primary);
 }
 .home.post-list .reply-block .reply-meta {
@@ -2026,6 +2119,122 @@ footer .copyright a:hover {
   display: none !important;
 }
 
+/**
+ * [INPUT]: variables 配色与 render-table.html 的滚动容器。
+ * [OUTPUT]: 正文表格默认居中，列对齐可覆盖，外层支持横向滚动。
+ * [POS]: 文章表格唯一样式入口；排除代码行号表格。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+.post-content .table-wrap,
+.post .e-content .table-wrap {
+  margin-block: var(--post-flow);
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--surface-elevated);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-secondary) transparent;
+}
+.post-content .table-wrap:focus-visible,
+.post .e-content .table-wrap:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.post-content table:not(figure.highlight table),
+.post .e-content table:not(figure.highlight table) {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--text-primary);
+  font-size: 0.875em;
+  line-height: 1.65;
+  font-variant-numeric: lining-nums tabular-nums;
+  text-align: center;
+  text-wrap: normal;
+  overflow-wrap: normal;
+}
+.post-content table:not(figure.highlight table) th,
+.post-content table:not(figure.highlight table) td,
+.post .e-content table:not(figure.highlight table) th,
+.post .e-content table:not(figure.highlight table) td {
+  min-width: 4em;
+  padding: 0.75em 1em;
+  border: 0;
+  border-bottom: 1px solid var(--border-primary);
+  vertical-align: middle;
+  text-align: inherit;
+}
+.post-content table:not(figure.highlight table) thead,
+.post .e-content table:not(figure.highlight table) thead {
+  background: var(--table-header);
+}
+.post-content table:not(figure.highlight table) th,
+.post .e-content table:not(figure.highlight table) th {
+  border-bottom-color: var(--border-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.post-content table:not(figure.highlight table) tbody tr:nth-child(even),
+.post .e-content table:not(figure.highlight table) tbody tr:nth-child(even) {
+  background: var(--table-stripe);
+}
+.post-content table:not(figure.highlight table) tbody tr:last-child > *,
+.post .e-content table:not(figure.highlight table) tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.post-content table:not(figure.highlight table) td > :last-child,
+.post .e-content table:not(figure.highlight table) td > :last-child {
+  margin-bottom: 0;
+}
+.post-content table:not(figure.highlight table) caption,
+.post .e-content table:not(figure.highlight table) caption {
+  padding: 0.75em 1em;
+  color: var(--text-secondary);
+  text-align: start;
+}
+.post-content table:not(figure.highlight table) .align-left,
+.post .e-content table:not(figure.highlight table) .align-left {
+  text-align: left;
+}
+.post-content table:not(figure.highlight table) .align-center,
+.post .e-content table:not(figure.highlight table) .align-center {
+  text-align: center;
+}
+.post-content table:not(figure.highlight table) .align-right,
+.post .e-content table:not(figure.highlight table) .align-right {
+  text-align: right;
+}
+@media (hover: hover) {
+  .post-content table:not(figure.highlight table) tbody tr:hover,
+  .post .e-content table:not(figure.highlight table) tbody tr:hover {
+    background: var(--table-hover);
+  }
+}
+.post-content table:not(figure.highlight table):not(.table-wrap table),
+.post .e-content table:not(figure.highlight table):not(.table-wrap table) {
+  display: block;
+  max-width: 100%;
+  margin-block: var(--post-flow);
+  overflow-x: auto;
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--surface-elevated);
+}
+
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables、../mixins 的 Sass 定义。
+ * [OUTPUT]: 定义归档、分类与标签列表。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .tag .post-item,
 .category .post-item, .archive .post-item {
   display: flex;
@@ -2118,6 +2327,18 @@ footer .copyright a:hover {
   font-size: 0.9em;
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables 的语法色、表面色与等宽字体。
+ * [OUTPUT]: 定义随明暗配色切换的代码高亮与响应式工具栏。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 figure.highlight {
   position: relative;
   margin: 1em 0;
@@ -2146,7 +2367,7 @@ figure.highlight figcaption .info {
   min-width: 0;
 }
 figure.highlight figcaption .info .filename {
-  font-family: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
   font-size: var(--font-size-code);
   color: var(--text-tertiary);
   overflow-wrap: anywhere;
@@ -2188,8 +2409,8 @@ figure.highlight figcaption .actions button:hover {
   background: var(--surface-interactive-hover);
 }
 figure.highlight figcaption .actions button.copied {
-  color: #2ecc71;
-  border-color: #2ecc71;
+  color: var(--color-success);
+  border-color: var(--color-success);
 }
 figure.highlight table {
   width: 100%;
@@ -2256,20 +2477,22 @@ figure.highlight.folded:not(:has(.code pre:after)) {
 }
 
 pre {
-  color: var(--text-primary);
-  font-family: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
+  color: var(--code-text);
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;
 }
 pre .function .keyword,
 pre .constant {
-  color: #0092db;
+  color: var(--code-number);
 }
-pre .keyword,
-pre .attribute {
+pre .keyword {
   color: var(--code-keyword);
+}
+pre .attribute {
+  color: var(--code-attribute);
 }
 pre .number,
 pre .literal {
-  color: #ae81ff;
+  color: var(--code-number);
 }
 pre .tag,
 pre .tag .title,
@@ -2280,16 +2503,16 @@ pre .lisp .title,
 pre .clojure .built_in,
 pre .nginx .title,
 pre .tex .special {
-  color: #2973b7;
+  color: var(--code-number);
 }
 pre .symbol,
 pre .symbol .string,
 pre .value,
 pre .regexp {
-  color: var(--color-primary);
+  color: var(--code-string);
 }
 pre .title {
-  color: #83B917;
+  color: var(--code-function);
 }
 pre .tag .value,
 pre .string,
@@ -2315,7 +2538,7 @@ pre .apache .tag,
 pre .apache .cbracket,
 pre .tex .command,
 pre .prompt {
-  color: var(--color-primary);
+  color: var(--code-string);
 }
 pre .comment,
 pre .java .annotation,
@@ -2326,10 +2549,10 @@ pre .doctype,
 pre .shebang,
 pre .apache .sqbracket,
 pre .tex .formula {
-  color: #b3b3b3;
+  color: var(--code-comment);
 }
 pre .deletion {
-  color: #BA4545;
+  color: var(--color-danger);
 }
 pre .coffeescript .javascript,
 pre .javascript .xml,
@@ -2341,6 +2564,18 @@ pre .xml .cdata {
   opacity: 0.5;
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables 的 Sass 定义。
+ * [OUTPUT]: 定义折叠区块与正文展开后的标题间距。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 details {
   margin: 1em 0;
   padding: 1em;
@@ -2381,6 +2616,18 @@ details[open] > *:not(summary) {
     transform: translateY(0);
   }
 }
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables 的主色、反色文字与圆角。
+ * [OUTPUT]: 定义随明暗配色切换的列表和文章分页按钮。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .paginator {
   margin: 4em 0;
   text-align: center;
@@ -2391,16 +2638,28 @@ details[open] > *:not(summary) {
   margin: 0 4px;
   padding: 4px 12px;
   border-radius: 4px;
-  border-bottom: 4px solid #3aa373;
+  border-bottom: 4px solid var(--color-primary-hover);
   font-size: 14px;
-  color: white;
-  background-color: #4fc08d;
+  color: var(--text-inverse);
+  background-color: var(--color-primary);
 }
 .paginator .prev:hover,
 .paginator .next:hover {
-  background-color: #22bd77;
+  background-color: var(--color-primary-hover);
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables、../mixins 的 Sass 定义。
+ * [OUTPUT]: 定义友链网格和卡片。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .friend-links__content {
   margin-bottom: 2em;
   padding: 0 1rem;
@@ -2455,10 +2714,21 @@ details[open] > *:not(summary) {
   height: 48px;
   border-radius: 50%;
   margin-top: 1rem;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables 的边框、次要文字与主色。
+ * [OUTPUT]: 定义随明暗配色切换的页脚与署名。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 footer {
   padding-bottom: 1px;
 }
@@ -2468,14 +2738,26 @@ footer .copyright {
   text-align: center;
 }
 footer .copyright p, footer .copyright a {
-  color: #aaa;
+  color: var(--text-secondary);
   font-size: 14px;
   font-weight: 100;
 }
 footer .copyright a:hover {
-  color: #888;
+  color: var(--color-primary-hover);
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables 的 Sass 定义。
+ * [OUTPUT]: 定义键盘焦点、跳过导航与辅助阅读规则。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .skip-link {
   position: absolute;
   width: 1px;
@@ -2539,6 +2821,18 @@ footer .copyright a:hover {
   border: 0;
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables 的 Sass 定义。
+ * [OUTPUT]: 定义返回顶部按钮与显示状态。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .back-to-top {
   position: fixed;
   z-index: 200;
@@ -2600,6 +2894,18 @@ footer .copyright a:hover {
   }
 }
 
+/**
+ * [INPUT]: variables、mixins、基础字体与 _partial 组件样式。
+ * [OUTPUT]: 按原版顺序汇总样式，保留页面容器与响应式布局。
+ * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+/**
+ * [INPUT]: 依赖 ../variables、../mixins 的 Sass 定义。
+ * [OUTPUT]: 定义 Webmention 评论布局。
+ * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
 .webmention-section {
   margin: 2em 0;
   padding: 1.5em;
@@ -2646,8 +2952,7 @@ footer .copyright a:hover {
   border-radius: 50%;
   margin: 0 8px 0 0;
   background: var(--surface-interactive);
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .webmention-section .webmention-author-name {
   font-weight: 500;
@@ -2678,15 +2983,11 @@ footer .copyright a:hover {
 .webmention-section .webmention-content a {
   color: var(--color-primary);
   text-decoration: underline;
-  -webkit-text-decoration-color: color-mix(in srgb, var(--color-primary) 60%, transparent);
-          text-decoration-color: color-mix(in srgb, var(--color-primary) 60%, transparent);
-  transition: -webkit-text-decoration-color 0.2s ease-in-out;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 60%, transparent);
   transition: text-decoration-color 0.2s ease-in-out;
-  transition: text-decoration-color 0.2s ease-in-out, -webkit-text-decoration-color 0.2s ease-in-out;
 }
 .webmention-section .webmention-content a:hover {
-  -webkit-text-decoration-color: var(--color-primary);
-          text-decoration-color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
 }
 .webmention-section .webmention-meta {
   margin-top: 0.5em;

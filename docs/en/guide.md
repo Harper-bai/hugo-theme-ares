@@ -1,6 +1,6 @@
 <!--
 [INPUT]: 当前 Hugo 主题实现与示例配置。
-[OUTPUT]: 英文文章、页面、代码与原生折叠使用说明。
+[OUTPUT]: 英文内容、主题配色、阅读排版、首屏字体与代码说明。
 [POS]: 项目文档；参数与命令必须随实现更新。
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 -->
@@ -21,11 +21,17 @@ categories: [Technology]
 
 Place `<!--more-->` between the homepage summary and the rest of the article. The spaced form, `<!-- more -->`, is also supported. Without a separator, the homepage displays the full article. Drafts are excluded from normal builds, search, and RSS.
 
-## Article typography
+## Colors and article typography
+
+The light palette takes inspiration from [x7aNote](https://github.com/Xeonzilla/x7aNote): warm paper, charcoal text, and deep teal links. Dark mode uses a charcoal background, warm gray text, and pale teal links. Navigation, tables, pagination, and syntax highlighting share theme colors. The theme follows the system preference and remembers a manual choice.
 
 Articles use 18–20px body text with a line height of 1.75. Serif headings decrease in size by level. Paragraphs, lists, quotations, and tables share a spacing rhythm. Mobile articles have side gutters, and long headings can use the full text width. Heading anchors appear on hover or keyboard focus.
 
-Source Serif 4 is bundled locally for Latin headings and Arabic numerals in dates, years, lists, and prose. CJK headings use system serif fonts. Body letters and CJK text retain their sans-serif fonts. Code, line numbers, and inline code use JetBrains Mono. Numbers need no special markup or script.
+Table cells default to horizontal and vertical centering. Use `:---`, `:---:`, or `---:` in the Markdown separator row to set left, center, or right alignment.
+
+Source Serif 4 is bundled locally for Latin headings and Arabic numerals in dates, years, lists, and prose. CJK headings use system serif fonts. Chinese body text prefers system sans-serif fonts. Code blocks, line numbers, and inline code use system monospace fonts. Numbers need no special markup or script.
+
+Open Sans regular and Source Serif 4 are preloaded. Downloaded fonts use `font-display: optional`. If a font misses the first render, the page keeps its system fallback to prevent a visible font swap during reading. Numerals fall back to a system serif font. Noto Sans SC supplies Chinese glyphs missing from the system fonts. The original JetBrains Mono assets and licenses remain available for custom font stacks.
 
 ## Pages and code
 

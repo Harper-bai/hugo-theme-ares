@@ -7,7 +7,7 @@
 {{- $lang := .Type | default "text" -}}
 {{- $result := transform.HighlightCodeBlock . (dict "noClasses" false "lineNos" false "style" "monokai") -}}
 {{- $code := $result.Inner -}}
-{{/* Chroma token 映射到上游 highlight.js 类名，沿用原配色。 */}}
+{{/* Chroma token 映射为 Ares 语法类名，颜色由主题变量提供。 */}}
 {{- $tokens := dict "k" "keyword" "kc" "literal" "kd" "keyword" "kn" "keyword" "kp" "keyword" "kr" "keyword" "kt" "built_in" "s" "string" "s1" "string" "s2" "string" "sb" "string" "sc" "string" "sd" "string" "se" "string" "sh" "string" "si" "subst" "sr" "regexp" "ss" "symbol" "m" "number" "mb" "number" "mf" "number" "mh" "number" "mi" "number" "mo" "number" "il" "number" "c" "comment" "c1" "comment" "cm" "comment" "cp" "preprocessor" "cs" "comment" "ch" "shebang" "nb" "built_in" "bp" "built_in" "nf" "title" "fm" "title" "nc" "title" "nt" "tag" "na" "attribute" "nd" "title" "no" "constant" "gd" "deletion" "gi" "addition" -}}
 {{- range $from, $to := $tokens -}}{{- $code = replace $code (printf `class="%s"` $from) (printf `class="%s"` $to) -}}{{- end -}}
 {{- $code = replaceRE ` style="[^"]*"` "" $code -}}

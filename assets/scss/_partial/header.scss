@@ -1,6 +1,6 @@
 /**
- * [INPUT]: 依赖 ../variables、../mixins 的 Sass 定义。
- * [OUTPUT]: 定义 Logo 与页头布局。
+ * [INPUT]: 依赖 ../variables、../mixins 与默认 favicon.png。
+ * [OUTPUT]: 定义页头布局与默认 Logo 的暗色适配。
  * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -49,3 +49,8 @@ header {
       }
     }
   }
+
+// 默认黑色 Logo 在暗色背景上使用浅色。
+[data-theme="dark"] header .logo-link img[src$="/favicon.png"] {
+  filter: invert(1);
+}

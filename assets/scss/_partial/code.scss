@@ -1,6 +1,6 @@
 /**
- * [INPUT]: 依赖 ../variables 的 Sass 定义。
- * [OUTPUT]: 定义独立排版的代码表格、语法颜色与响应式工具栏。
+ * [INPUT]: 依赖 ../variables 的语法色、表面色与等宽字体。
+ * [OUTPUT]: 定义随明暗配色切换的代码高亮与响应式工具栏。
  * [POS]: assets/scss/_partial 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -82,8 +82,8 @@ figure.highlight {
         }
 
         &.copied {
-          color: #2ecc71;
-          border-color: #2ecc71;
+          color: var(--color-success);
+          border-color: var(--color-success);
         }
       }
     }
@@ -169,15 +169,15 @@ figure.highlight {
 }
 
 pre {
-  color: $dark-gray;
+  color: var(--code-text);
   font-family: $code-font-family;
 
   .function .keyword,
-  .constant { color: #0092db; }
-  .keyword,
-  .attribute { color: $code-color; }
+  .constant { color: var(--code-number); }
+  .keyword { color: var(--code-keyword); }
+  .attribute { color: var(--code-attribute); }
   .number,
-  .literal { color: #ae81ff; }
+  .literal { color: var(--code-number); }
   .tag,
   .tag .title,
   .change,
@@ -186,12 +186,12 @@ pre {
   .lisp .title,
   .clojure .built_in,
   .nginx .title,
-  .tex .special { color: #2973b7; }
+  .tex .special { color: var(--code-number); }
   .symbol,
   .symbol .string,
   .value,
-  .regexp { color: $primary-color; }
-  .title { color: #83B917; }
+  .regexp { color: var(--code-string); }
+  .title { color: var(--code-function); }
   .tag .value,
   .string,
   .subst,
@@ -215,7 +215,7 @@ pre {
   .apache .tag,
   .apache .cbracket,
   .tex .command,
-  .prompt { color: $primary-color; }
+  .prompt { color: var(--code-string); }
   .comment,
   .java .annotation,
   .python .decorator,
@@ -224,8 +224,8 @@ pre {
   .doctype,
   .shebang,
   .apache .sqbracket,
-  .tex .formula { color: #b3b3b3; }
-  .deletion { color: #BA4545; }
+  .tex .formula { color: var(--code-comment); }
+  .deletion { color: var(--color-danger); }
   .coffeescript .javascript,
   .javascript .xml,
   .tex .formula,

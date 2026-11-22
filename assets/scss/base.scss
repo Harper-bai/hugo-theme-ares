@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 依赖 variables、mixins 的 Sass 定义。
- * [OUTPUT]: 定义全站基础排版与明暗主题变量。
+ * [OUTPUT]: 定义全站基础排版与控件默认样式。
  * [POS]: assets/scss 的样式模块；由 ares.scss 汇总。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -149,7 +149,7 @@
     box-sizing: content-box;
     height: 1px;
     border: 0;
-    border-top: 1px solid var(--color-border, #e1e4e8);
+    border-top: 1px solid var(--border-primary);
     margin: 1.5rem 0;
   }
 
@@ -238,25 +238,6 @@
     border-collapse: collapse;
     border-spacing: 0;
 
-    thead {
-      background-color: var(--surface-interactive);
-
-      th {
-        padding: 5px;
-        min-width: 20px;
-      }
-    }
-
-    tbody {
-      tr:nth-child(2n) {
-        background-color: var(--surface-elevated);
-      }
-
-      td {
-        padding: 5px;
-        vertical-align: text-top;
-      }
-    }
   }
 
   fieldset {

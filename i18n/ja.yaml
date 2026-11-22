@@ -84,6 +84,8 @@ back_to_top:
   other: トップへ戻る
 theme_toggle:
   other: テーマを切り替え
+table_scroll:
+  other: 本文の表、横にスクロールできます
 nav_menu:
   other: メニュー
 not_found:

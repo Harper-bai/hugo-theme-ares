@@ -88,6 +88,8 @@ back_to_top:
   other: Back to top
 theme_toggle:
   other: Switch theme
+table_scroll:
+  other: Article table, scroll horizontally
 nav_menu:
   other: Menu
 not_found:

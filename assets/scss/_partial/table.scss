@@ -1,0 +1,109 @@
+/**
+ * [INPUT]: variables 配色与 render-table.html 的滚动容器。
+ * [OUTPUT]: 正文表格默认居中，列对齐可覆盖，外层支持横向滚动。
+ * [POS]: 文章表格唯一样式入口；排除代码行号表格。
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+
+// ============================================================================
+// 正文表格：保留表格语义，让外层承担滚动与边框。
+// ============================================================================
+.post-content,
+.post .e-content {
+  .table-wrap {
+    margin-block: var(--post-flow);
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--surface-elevated);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-secondary) transparent;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+    }
+  }
+
+  table:not(figure.highlight table) {
+    width: 100%;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--text-primary);
+    font-size: 0.875em;
+    line-height: 1.65;
+    font-variant-numeric: lining-nums tabular-nums;
+    text-align: center;
+    text-wrap: normal;
+    overflow-wrap: normal;
+
+    th,
+    td {
+      min-width: 4em;
+      padding: 0.75em 1em;
+      border: 0;
+      border-bottom: 1px solid var(--border-primary);
+      vertical-align: middle;
+      text-align: inherit;
+    }
+
+    thead {
+      background: var(--table-header);
+    }
+
+    th {
+      border-bottom-color: var(--border-secondary);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--table-stripe);
+    }
+
+    tbody tr:last-child > * {
+      border-bottom: 0;
+    }
+
+    td > :last-child {
+      margin-bottom: 0;
+    }
+
+    caption {
+      padding: 0.75em 1em;
+      color: var(--text-secondary);
+      text-align: start;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .align-right {
+      text-align: right;
+    }
+
+    @media (hover: hover) {
+      tbody tr:hover {
+        background: var(--table-hover);
+      }
+    }
+  }
+
+  // 手写 HTML 表格沿用同一外观；Markdown 表格由模板包裹。
+  table:not(figure.highlight table):not(.table-wrap table) {
+    display: block;
+    max-width: 100%;
+    margin-block: var(--post-flow);
+    overflow-x: auto;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--surface-elevated);
+  }
+}
