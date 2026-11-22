@@ -1,6 +1,6 @@
 <!--
 [INPUT]: Hugo 主题、完整示例站与使用配置文档。
-[OUTPUT]: 项目定位、特性归纳、安装配置与文章示例。
+[OUTPUT]: 项目定位、主题预览、特性、安装配置与文章示例。
 [POS]: 项目文档入口；保留原作者与许可。
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 -->
@@ -11,11 +11,11 @@
 
 Hugo Theme Ares 移植自 [Cytrogen/hexo-theme-ares](https://github.com/cytrogen/hexo-theme-ares)，专为注重文字表达的个人博客设计。主题保留 Ares 的单栏布局、SVG 图标与移动端交互，配色和正文排版参考 [x7aNote](https://github.com/Xeonzilla/x7aNote)，采用暖纸色、炭灰正文、青绿链接、衬线标题与宽松段落。暗色模式沿同一色系适配。日常撰写与发布仅依赖标准 Markdown 文件与 Hugo，页面构建完全静态化，无需 Node.js 运行环境。
 
-![桌面端预览](docs/images/desktop.png)
+![桌面端预览（浅色模式）](docs/images/desktop.png)
 
-[查看移动端预览](docs/images/mobile.png)
+[查看移动端预览（暗色模式）](docs/images/mobile.png)
 
-[查看正文排版](docs/images/article.png)
+[查看正文与表格排版](docs/images/article.png)
 
 ## 主题特性
 

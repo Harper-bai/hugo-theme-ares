@@ -11,11 +11,11 @@
 
 A Hugo port of [Hexo Theme Ares](https://github.com/cytrogen/hexo-theme-ares), keeping its single-column layout, SVG icons, and mobile reading experience. Colors and article typography take inspiration from [x7aNote](https://github.com/Xeonzilla/x7aNote), with warm paper, charcoal text, teal links, serif headings, and generous paragraph spacing. Dark mode adapts the same color family. Write in Markdown and use Hugo to generate the static pages.
 
-![Desktop preview](../images/desktop.png)
+![Desktop preview (light mode)](../images/desktop.png)
 
-[View the mobile preview](../images/mobile.png)
+[View the mobile preview (dark mode)](../images/mobile.png)
 
-[View article typography](../images/article.png)
+[View article typography and tables](../images/article.png)
 
 ## Preview locally
 
