@@ -73,7 +73,7 @@ Replace the sample articles, about text, and blogroll with your own content. Fro
 
 Features include post summaries, pagination, archives, tags, categories, blogrolls, translated pages, local search, RSS, code copying and folding, and expandable HTML sections. Optional services include Disqus, MathJax, Google Analytics, and Webmention. The example leaves these external services disabled.
 
-Articles use 18–20px body text and serif headings. A bundled Source Serif 4 font supplies Latin headings and Arabic numerals, with system serif fonts used when it misses the first render. Chinese body text prefers system fonts; CJK headings use system serif fonts. Code uses system monospace fonts. Downloaded fonts do not replace the fallback after the first render.
+Articles use 18–20px body text and serif headings. A bundled Source Serif 4 font supplies Latin headings and Arabic numerals, with system serif fonts used when it misses the first render. Chinese body text uses only system fonts; CJK headings use system serif fonts. The theme does not download Chinese fonts. Code uses system monospace fonts. Downloaded fonts do not replace the fallback after the first render.
 
 See the [content guide](guide.md), [configuration reference](configuration.md), and [contributing guide](../../CONTRIBUTING.md).
 

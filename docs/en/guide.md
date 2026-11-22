@@ -29,9 +29,9 @@ Articles use 18–20px body text with a line height of 1.75. Serif headings decr
 
 Table cells default to horizontal and vertical centering. Use `:---`, `:---:`, or `---:` in the Markdown separator row to set left, center, or right alignment.
 
-Source Serif 4 is bundled locally for Latin headings and Arabic numerals in dates, years, lists, and prose. CJK headings use system serif fonts. Chinese body text prefers system sans-serif fonts. Code blocks, line numbers, and inline code use system monospace fonts. Numbers need no special markup or script.
+Source Serif 4 is bundled locally for Latin headings and Arabic numerals in dates, years, lists, and prose. CJK headings use system serif fonts. Chinese body text uses only system sans-serif fonts, such as PingFang, Microsoft YaHei, or a locally installed Noto Sans CJK. The theme does not download Chinese fonts, so Chinese glyphs vary by operating system. Code blocks, line numbers, and inline code use system monospace fonts. Numbers need no special markup or script.
 
-Open Sans regular and Source Serif 4 are preloaded. Downloaded fonts use `font-display: optional`. If a font misses the first render, the page keeps its system fallback to prevent a visible font swap during reading. Numerals fall back to a system serif font. Noto Sans SC supplies Chinese glyphs missing from the system fonts. The original JetBrains Mono assets and licenses remain available for custom font stacks.
+Open Sans regular and Source Serif 4 are preloaded. Downloaded fonts use `font-display: optional`. If a font misses the first render, the page keeps its system fallback to prevent a visible font swap during reading. Numerals fall back to a system serif font. The original JetBrains Mono assets and licenses remain available for custom font stacks.
 
 ## Pages and code
 

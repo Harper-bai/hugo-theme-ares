@@ -1,6 +1,6 @@
 /**
- * [INPUT]: static/fonts 字体、本机字体与 Unicode 分段能力。
- * [OUTPUT]: 声明首屏字体与衬线数字回退；禁止下载后的延迟替换。
+ * [INPUT]: static/fonts 的西文字体、本机字体与 Unicode 分段能力。
+ * [OUTPUT]: 声明西文字体与衬线数字回退；中文使用本机字体。
  * [POS]: ares.scss 的唯一字体声明入口；head.html 预加载首屏字体。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -98,30 +98,6 @@
   ascent-override: 97%;
   descent-override: 25%;
   line-gap-override: 0%;
-}
-
-// ============================================================================
-// 中文优先使用系统字体；离线字体只补充系统缺失的字形。
-// ============================================================================
-
-// Noto Sans SC 正常字重，仅补充系统缺字。
-@font-face {
-  font-family: 'Noto Sans SC';
-  src: url('../fonts/notosanssc-regular-chinese.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
-}
-
-// Noto Sans SC 粗体。
-@font-face {
-  font-family: 'Noto Sans SC';
-  src: url('../fonts/notosanssc-bold-chinese.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: optional;
-  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
 }
 
 // ============================================================================

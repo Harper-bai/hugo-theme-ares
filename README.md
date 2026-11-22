@@ -19,7 +19,7 @@ Hugo Theme Ares 移植自 [Cytrogen/hexo-theme-ares](https://github.com/cytrogen
 
 ## 主题特性
 
-- **阅读排版**：单栏居中布局，搭配衬线标题、18–20px 正文与统一段落间距。日期、年份和正文中的阿拉伯数字优先使用随主题提供的 Source Serif 4，加载未赶上首屏时使用本机衬线字体；中文正文优先使用本机字体，代码使用本机等宽字体。支持首页摘要与分页、年份归档、分类与标签聚合、关于页及友情链接。
+- **阅读排版**：单栏居中布局，搭配衬线标题、18–20px 正文与统一段落间距。日期、年份和正文中的阿拉伯数字优先使用随主题提供的 Source Serif 4，加载未赶上首屏时使用本机衬线字体；中文正文只使用本机字体，无需下载中文字体，代码使用本机等宽字体。支持首页摘要与分页、年份归档、分类与标签聚合、关于页及友情链接。
 - **明暗主题**：浅色采用暖纸色、炭灰与深青绿，暗色采用炭黑、暖灰与浅青绿。默认跟随系统偏好，支持手动切换并在本地保存选择。
 - **移动适配**：原生响应式设计，搭配轻量抽屉导航菜单与原生折叠控件，无多余外部依赖。
 - **多语言支持**：内置中文、英文、日文界面文案与独立内容隔离。跨语言文章支持译文精准跳转；缺少译文时平滑回退至目标语言首页。
@@ -137,4 +137,4 @@ npm run css
 
 - **原版作者与项目**：页面布局与视觉设计来自 [Cytrogen/hexo-theme-ares](https://github.com/cytrogen/hexo-theme-ares)，其设计源自 [Hexo Theme Hermes](https://github.com/claymcleod/hexo-theme-hermes) 与 [Hexo Theme Apollo](https://github.com/sun4cs/hexo-theme-apollo)。
 - **开源许可证**：本项目遵循 [MIT 许可证](LICENSE)。
-- **字体说明**：内置的 Noto Sans SC、Open Sans、JetBrains Mono 与 Source Serif 4 离线字体均遵循各自的开源协议，授权文本保存在 `static/fonts/` 目录中。Source Serif 4 使用 SIL OFL 1.1 授权。
+- **字体说明**：内置的 Open Sans、JetBrains Mono 与 Source Serif 4 离线字体均遵循各自的开源协议，授权文本保存在 `static/fonts/` 目录中。Source Serif 4 使用 SIL OFL 1.1 授权。中文使用本机字体。

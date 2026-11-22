@@ -7,7 +7,7 @@
  */
 /**
  * [INPUT]: 参考 x7aNote 的基础配色与 Flexoki 语法色。
- * [OUTPUT]: 定义 Ares 明暗配色、字体栈、表格与布局变量。
+ * [OUTPUT]: 定义明暗配色、本机中文字体栈与布局变量。
  * [POS]: 全站设计变量入口；局部样式消费语义颜色。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -303,8 +303,8 @@ template {
 }
 
 /**
- * [INPUT]: static/fonts 字体、本机字体与 Unicode 分段能力。
- * [OUTPUT]: 声明首屏字体与衬线数字回退；禁止下载后的延迟替换。
+ * [INPUT]: static/fonts 的西文字体、本机字体与 Unicode 分段能力。
+ * [OUTPUT]: 声明西文字体与衬线数字回退；中文使用本机字体。
  * [POS]: ares.scss 的唯一字体声明入口；head.html 预加载首屏字体。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -374,22 +374,6 @@ template {
   line-gap-override: 0%;
 }
 @font-face {
-  font-family: "Noto Sans SC";
-  src: url("../fonts/notosanssc-regular-chinese.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
-}
-@font-face {
-  font-family: "Noto Sans SC";
-  src: url("../fonts/notosanssc-bold-chinese.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: optional;
-  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
-}
-@font-face {
   font-family: "JetBrains Mono";
   src: url("../fonts/jetbrainsmono-regular-latin.woff2") format("woff2");
   font-weight: 400;
@@ -436,7 +420,7 @@ template {
 }
 
 html {
-  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
@@ -452,7 +436,7 @@ body {
   font-size: var(--font-size-body);
   line-height: 1.6;
   background-color: var(--surface-background);
-  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
 }
 
 article,
@@ -1533,7 +1517,7 @@ footer .copyright a:hover {
   background-color: var(--surface-background);
   color: var(--text-primary);
   font-size: 1rem;
-  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   transition: border-color 0.3s ease-in-out;
 }
 .search-dialog__input:focus {
@@ -2042,7 +2026,7 @@ footer .copyright a:hover {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: var(--surface-elevated);
-  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+  font-family: "Ares Numerals", "Ares Numerals Fallback", "Open Sans", "Open Sans Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
 }
 .post-content .danger > p > br,
 .post .e-content .danger > p > br {

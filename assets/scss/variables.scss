@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 参考 x7aNote 的基础配色与 Flexoki 语法色。
- * [OUTPUT]: 定义 Ares 明暗配色、字体栈、表格与布局变量。
+ * [OUTPUT]: 定义明暗配色、本机中文字体栈与布局变量。
  * [POS]: 全站设计变量入口；局部样式消费语义颜色。
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -124,8 +124,8 @@ $code-font-size: 0.9em;
 $h1-font-size: 2em;
 $h2-font-size: 1.5em;
 
-// 中文优先使用系统字体；数字的下载字体与本机回退均为衬线。
-$base-font-family: 'Ares Numerals', 'Ares Numerals Fallback', 'Open Sans', 'Open Sans Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC', sans-serif;
+// 中文只使用本机字体；数字的下载字体与本机回退均为衬线。
+$base-font-family: 'Ares Numerals', 'Ares Numerals Fallback', 'Open Sans', 'Open Sans Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
 $heading-font-family: 'Source Serif 4', 'Noto Serif CJK SC', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', 'Noto Serif CJK JP', 'Yu Mincho', 'Hiragino Mincho ProN', Georgia, serif;
 // 代码直接使用系统等宽字体，避免下载完成后改变字形与行高。
 $code-font-family: ui-monospace, 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
